@@ -85,14 +85,14 @@
 <picture><img src="assets/master_os_bottom.svg" width="100%" alt="Cyberpunk AI Operating System - Bottom"></picture>
 
 <div align="center">
-  <a href="mailto:contact@placeholder.com">
+  <a href="mailto:ratheneshsg@gmail.com">
     <img src="https://img.shields.io/badge/EMAIL-CONNECT-8B5CF6?style=for-the-badge&logo=maildotru&logoColor=white" />
   </a>
   <a href="https://github.com/S-G-Rathenesh">
     <img src="https://img.shields.io/badge/GITHUB-S--G--RATHENESH-161B22?style=for-the-badge&logo=github&logoColor=white" />
   </a>
-  <a href="#">
-    <img src="https://img.shields.io/badge/PORTFOLIO-OFFLINE-A855F7?style=for-the-badge&logo=web&logoColor=white" />
+  <a href="https://s-g-rathenesh.github.io/my-portfolio/">
+    <img src="https://img.shields.io/badge/PORTFOLIO-WEBSITE-A855F7?style=for-the-badge&logo=web&logoColor=white" />
   </a>
 </div>
 
