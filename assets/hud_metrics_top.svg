@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" width="100%" height="100">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&amp;display=swap');
+      .bg{fill:#0D1117}.glow-c{filter:url(#gc)}.glow-p{filter:url(#gp)}
+      .blink{animation:b 1s step-end infinite}@keyframes b{50%{opacity:0}}
+      .pulse{animation:p 2s infinite alternate}@keyframes p{0%{opacity:.4}100%{opacity:1}}
+      .stream{stroke-dasharray:20 10;animation:s 5s linear infinite}@keyframes s{to{stroke-dashoffset:-100}}
+      .pkt{stroke-dasharray:5 150;stroke-width:4;stroke-linecap:round;animation:pk 3s linear infinite}@keyframes pk{to{stroke-dashoffset:-310}}
+    </style>
+    <filter id="gc" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="gp" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1000" height="100" class="bg"/>
+  
+  <!-- Circuit lines entering -->
+  <path d="M 200 0 L 200 30" stroke="#3B82F6" stroke-width="2" class="stream"/>
+  <path d="M 500 0 L 500 30" stroke="#00E5FF" stroke-width="2" class="stream"/>
+  <path d="M 800 0 L 800 30" stroke="#8B5CF6" stroke-width="2" class="stream"/>
+  <path d="M 500 0 L 500 30" fill="none" stroke="#00E5FF" class="pkt"/>
+  
+  <!-- Monitor Top Bezel -->
+  <rect x="25" y="30" width="950" height="70" fill="rgba(13,17,23,0.9)" stroke="#3B82F6" stroke-width="2" rx="6"/>
+  <rect x="25" y="30" width="950" height="70" fill="rgba(59,130,246,0.03)"/>
+  
+  <line x1="25" y1="62" x2="975" y2="62" stroke="#3B82F6" stroke-width="1" opacity="0.4"/>
+  
+  <!-- LEDs -->
+  <circle cx="50" cy="46" r="5" fill="#00FF00" class="blink" filter="drop-shadow(0 0 4px #00FF00)"/>
+  <circle cx="70" cy="46" r="5" fill="#3B82F6" class="pulse"/>
+  <circle cx="90" cy="46" r="5" fill="#00E5FF" class="pulse glow-c"/>
+  
+  <!-- Title -->
+  <text x="120" y="51" font-family="'Orbitron',sans-serif" font-size="18" font-weight="700" fill="#3B82F6" letter-spacing="3px">AI_CORE_METRICS</text>
+  
+  <!-- Right Status -->
+  <text x="750" y="51" font-family="'Share Tech Mono',monospace" font-size="12" fill="#A855F7">ANALYSIS: DEEP | MODE: AUTO</text>
+  <rect x="940" y="40" width="12" height="12" fill="#3B82F6" class="blink"/>
+  
+  <!-- Sub-header -->
+  <text x="50" y="82" font-family="'Share Tech Mono',monospace" font-size="12" fill="#3B82F6">SRC: lowlighter/metrics | PLUGINS: isocalendar, languages, habits, lines</text>
+  <text x="880" y="82" font-family="'Share Tech Mono',monospace" font-size="12" fill="#00E5FF" class="blink">SYNC●</text>
+  
+  <!-- Corner Brackets -->
+  <path d="M 25 45 L 25 30 L 40 30" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.6"/>
+  <path d="M 975 45 L 975 30 L 960 30" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.6"/>
+</svg>

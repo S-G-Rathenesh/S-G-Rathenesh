@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" width="100%" height="100">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&amp;display=swap');
+      .bg{fill:#0D1117}.glow-c{filter:url(#gc)}.glow-p{filter:url(#gp)}
+      .blink{animation:b 1s step-end infinite}@keyframes b{50%{opacity:0}}
+      .pulse{animation:p 2s infinite alternate}@keyframes p{0%{opacity:.4}100%{opacity:1}}
+      .stream{stroke-dasharray:20 10;animation:s 5s linear infinite}@keyframes s{to{stroke-dashoffset:-100}}
+      .pkt{stroke-dasharray:5 150;stroke-width:4;stroke-linecap:round;animation:pk 3s linear infinite}@keyframes pk{to{stroke-dashoffset:-310}}
+    </style>
+    <filter id="gc" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="gp" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1000" height="100" class="bg"/>
+  
+  <!-- Circuit lines entering -->
+  <path d="M 200 0 L 200 30" stroke="#3B82F6" stroke-width="2" class="stream"/>
+  <path d="M 500 0 L 500 30" stroke="#00E5FF" stroke-width="2" class="glow-c stream"/>
+  <path d="M 800 0 L 800 30" stroke="#8B5CF6" stroke-width="2" class="stream"/>
+  <path d="M 200 0 L 200 30" fill="none" stroke="#00E5FF" class="pkt"/>
+  
+  <!-- Monitor Top Bezel -->
+  <rect x="25" y="30" width="950" height="70" fill="rgba(13,17,23,0.9)" stroke="#00E5FF" stroke-width="2" rx="6" class="glow-c"/>
+  <rect x="25" y="30" width="950" height="70" fill="rgba(0,229,255,0.03)"/>
+  
+  <!-- Title Bar -->
+  <line x1="25" y1="62" x2="975" y2="62" stroke="#00E5FF" stroke-width="1" opacity="0.4"/>
+  
+  <!-- LEDs -->
+  <circle cx="50" cy="46" r="5" fill="#00FF00" class="blink" filter="drop-shadow(0 0 4px #00FF00)"/>
+  <circle cx="70" cy="46" r="5" fill="#00E5FF" class="pulse glow-c"/>
+  <circle cx="90" cy="46" r="5" fill="#8B5CF6" class="pulse glow-p"/>
+  
+  <!-- Title -->
+  <text x="120" y="51" font-family="'Orbitron',sans-serif" font-size="18" font-weight="700" fill="#00E5FF" class="glow-c" letter-spacing="3px">SYSTEM_TELEMETRY</text>
+  
+  <!-- Right Status -->
+  <text x="750" y="51" font-family="'Share Tech Mono',monospace" font-size="12" fill="#A855F7">CPU: 94% | MEM: 2.1GB</text>
+  <rect x="940" y="40" width="12" height="12" fill="#00E5FF" class="blink glow-c"/>
+  
+  <!-- Signal Bars -->
+  <rect x="900" y="46" width="4" height="4" fill="#00E5FF"/>
+  <rect x="907" y="43" width="4" height="7" fill="#00E5FF"/>
+  <rect x="914" y="40" width="4" height="10" fill="#00E5FF"/>
+  <rect x="921" y="37" width="4" height="13" fill="#00E5FF"/>
+  
+  <!-- Sub-header Data -->
+  <text x="50" y="82" font-family="'Share Tech Mono',monospace" font-size="12" fill="#3B82F6">UPLINK: STABLE | REFRESH_RATE: 24h | SRC: github-readme-stats.vercel.app</text>
+  <text x="850" y="82" font-family="'Share Tech Mono',monospace" font-size="12" fill="#8B5CF6" class="blink">REC●</text>
+  
+  <!-- Corner Brackets -->
+  <path d="M 25 45 L 25 30 L 40 30" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.6"/>
+  <path d="M 975 45 L 975 30 L 960 30" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Scanline -->
+  <rect x="25" y="30" width="950" height="2" fill="#00E5FF" opacity="0.15"/>
+</svg>

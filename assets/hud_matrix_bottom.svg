@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 50" width="100%" height="50">
+  <defs>
+    <style>
+      .bg{fill:#0D1117}.glow-p{filter:url(#gp)}
+      .stream{stroke-dasharray:20 10;animation:s 5s linear infinite}@keyframes s{to{stroke-dashoffset:-100}}
+      .pkt{stroke-dasharray:5 150;stroke-width:4;stroke-linecap:round;animation:pk 3s linear infinite}@keyframes pk{to{stroke-dashoffset:-310}}
+      .hazard{stroke-dasharray:30 30;animation:hz 2s linear infinite}@keyframes hz{to{stroke-dashoffset:-120}}
+    </style>
+    <filter id="gp" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1000" height="50" class="bg"/>
+  
+  <!-- Warning Stripes -->
+  <line x1="25" y1="2" x2="975" y2="2" stroke="#A855F7" stroke-width="4" class="hazard glow-p"/>
+  
+  <rect x="25" y="4" width="950" height="20" fill="rgba(13,17,23,0.9)" stroke="#8B5CF6" stroke-width="2" rx="0"/>
+  <text x="500" y="18" font-family="'Share Tech Mono',monospace" font-size="11" fill="#8B5CF6" text-anchor="middle">── CONTAINMENT SECURE | ENTITY CONFINED ──</text>
+  
+  <path d="M 25 4 L 25 24 L 40 24" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.6"/>
+  <path d="M 975 4 L 975 24 L 960 24" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.6"/>
+  
+  <path d="M 200 24 L 200 50" stroke="#3B82F6" stroke-width="2" class="stream"/>
+  <path d="M 500 24 L 500 50" stroke="#00E5FF" stroke-width="2" class="stream"/>
+  <path d="M 800 24 L 800 50" stroke="#8B5CF6" stroke-width="2" class="stream"/>
+  <path d="M 500 24 L 500 50" fill="none" stroke="#A855F7" class="pkt"/>
+</svg>
