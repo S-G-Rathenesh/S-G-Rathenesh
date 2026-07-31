@@ -3,29 +3,14 @@
 <!-- HERO BANNER -->
 <img src="assets/banner.svg" alt="S-G-Rathenesh Cyberpunk Banner" width="100%" />
 
-<!-- BACKGROUND EFFECTS -->
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/stars.svg">
-  <img src="assets/stars.svg" style="position: absolute; top: 0; left: 0; z-index: -1;" width="100%">
-</picture>
 
-<!-- DIVIDER -->
-<img src="assets/divider.svg" width="100%" />
-
-<table>
+<table width="100%">
   <tr>
-    <td width="30%" align="center">
-      <img src="assets/avatar.png" width="150" style="border-radius: 50%; border: 4px solid #8B5CF6; box-shadow: 0 0 20px #A855F7;" alt="Avatar" />
-      <br><br>
-      <a href="https://github.com/S-G-Rathenesh">
-        <img src="https://img.shields.io/badge/STATUS-ONLINE-8B5CF6?style=for-the-badge&logo=github&logoColor=white" />
-      </a>
-      <br><br>
-      <a href="https://linkedin.com/in/S-G-Rathenesh">
-        <img src="https://img.shields.io/badge/LINK-CONNECT-3B82F6?style=for-the-badge&logo=linkedin&logoColor=white" />
-      </a>
+    <td width="42%" valign="top" align="center">
+      <!-- AI IDENTITY MODULE -->
+      <img src="assets/identity_panel.svg" alt="AI Identity Module" width="100%" />
     </td>
-    <td width="70%">
+    <td width="58%" valign="top">
       <!-- DASHBOARD SVG -->
       <img src="assets/dashboard.svg" alt="AI Command Center Dashboard" width="100%" />
     </td>
@@ -61,8 +46,6 @@
     </a>
   </p>
 </div>
-
-<br>
 
 <!-- SKILL MATRIX -->
 <img src="assets/skills.svg" alt="Skill Network" width="100%" />
@@ -133,8 +116,6 @@
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=S-G-Rathenesh&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&layout=compact&title_color=8B5CF6" height="190" alt="Top Languages" />
 </div>
 
-<br>
-
 <div align="center">
   <img src="https://streak-stats.demolab.com?user=S-G-Rathenesh&theme=tokyonight&hide_border=true&fire=orange&ring=8B5CF6" alt="GitHub Streak" />
 </div>
@@ -149,8 +130,6 @@
   <source media="(prefers-color-scheme: light)" srcset="dist/github-contribution-grid-snake.svg">
   <img alt="github contribution grid snake animation" src="dist/github-contribution-grid-snake-dark.svg" width="100%">
 </picture>
-
-<br><br>
 
 <!-- TIMELINE -->
 <img src="assets/timeline.svg" alt="Development Timeline" width="100%" />
@@ -182,8 +161,6 @@
     <img src="https://img.shields.io/badge/PORTFOLIO-OFFLINE-A855F7?style=for-the-badge&logo=web&logoColor=white" />
   </a>
 </div>
-
-<br><br>
 
 <!-- FOOTER -->
 <img src="assets/footer.svg" alt="Terminal Footer" width="100%" />
