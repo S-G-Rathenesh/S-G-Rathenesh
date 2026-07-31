@@ -2,17 +2,14 @@ name: Generate Snake Animation
 
 on:
   schedule:
-    # Run at midnight every day
     - cron: "0 0 * * *"
-  
-  # Allows to manually run the job at any time
   workflow_dispatch:
-  
-  # Run on every push on the master/main branch
   push:
     branches:
     - main
-    - master
+
+permissions:
+  contents: write
 
 jobs:
   generate:
@@ -21,7 +18,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Generate github-contribution-grid-snake.svg
         uses: Platane/snk/svg-only@v3
@@ -31,8 +28,8 @@ jobs:
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=#8B5CF6&color_dots=#0D1117,#161B22,#3B82F6,#8B5CF6,#A855F7
 
-      - name: Push to dist branch
-        uses: crazy-max/ghaction-github-pages@v3.1.0
+      - name: Push to output branch
+        uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
           build_dir: dist
