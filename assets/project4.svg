@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 200" width="100%" height="200">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&amp;display=swap');
+
+      .card { fill: rgba(13, 17, 23, 0.9); stroke: #A855F7; stroke-width: 1.5; transition: all 0.3s ease; }
+      .text-title { font-family: 'Orbitron', sans-serif; font-size: 20px; font-weight: 700; fill: #FFFFFF; }
+      .text-desc { font-family: 'Share Tech Mono', monospace; font-size: 13px; fill: #A855F7; }
+      .text-chip { font-family: 'Share Tech Mono', monospace; font-size: 11px; fill: #FFFFFF; }
+      
+      .glow-purple { filter: url(#glow-purple); }
+      .glow-cyan { filter: url(#glow-cyan); }
+      
+      .hover-layer { opacity: 0; transition: opacity 0.3s ease; }
+      g:hover .hover-layer { opacity: 1; }
+      g:hover .card { stroke: #00E5FF; stroke-width: 2.5; filter: url(#glow-cyan); }
+      g:hover .text-title { fill: #00E5FF; text-shadow: 0 0 10px #00E5FF; }
+
+      .pulse { animation: pulsing 2s infinite alternate; }
+      @keyframes pulsing { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+      
+      .chip { fill: #161B22; stroke: #3B82F6; stroke-width: 1; rx: 12; }
+    </style>
+    <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4" result="blur" /><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4" result="blur" /><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+
+  <g>
+    <rect x="5" y="5" width="470" height="190" rx="10" class="card" />
+    <path d="M 5 45 L 475 45" stroke="rgba(168, 85, 247, 0.3)" stroke-width="1" />
+    
+    <!-- Hover Effects Layer -->
+    <g class="hover-layer">
+      <rect x="5" y="5" width="470" height="190" rx="10" fill="rgba(0, 229, 255, 0.05)" />
+      <path d="M 5 45 L 475 45" stroke="#00E5FF" stroke-width="1.5" class="glow-cyan pulse" />
+      <circle cx="450" cy="25" r="5" fill="#00E5FF" class="glow-cyan" />
+    </g>
+
+    <!-- Header -->
+    <text x="25" y="32" class="text-title">VibeSync</text>
+    <circle cx="450" cy="25" r="5" fill="#A855F7" class="pulse glow-purple" />
+    
+    <!-- Description -->
+    <text x="25" y="70" class="text-desc">Realtime media synchronization platform</text>
+    
+    <!-- Tech Chips -->
+    <g transform="translate(25, 90)">
+      <rect x="0" y="0" width="80" height="24" class="chip" />
+      <text x="40" y="16" class="text-chip" text-anchor="middle">Flutter</text>
+      
+      <rect x="90" y="0" width="90" height="24" class="chip" />
+      <text x="135" y="16" class="text-chip" text-anchor="middle">Firebase</text>
+      
+      <rect x="190" y="0" width="160" height="24" class="chip" />
+      <text x="270" y="16" class="text-chip" text-anchor="middle">Watch Together API</text>
+    </g>
+
+    <!-- Progress / Footer -->
+    <g transform="translate(25, 140)">
+      <text x="0" y="10" class="text-chip" fill="#00E5FF">MODULE: ZERO-LATENCY SYNC</text>
+      <rect x="0" y="25" width="430" height="6" fill="#161B22" stroke="#3B82F6" stroke-width="0.5" />
+      <rect x="0" y="25" width="387" height="6" fill="#A855F7" class="glow-purple" />
+      <text x="430" y="10" class="text-chip" fill="#A855F7" text-anchor="end">[SYNCED]</text>
+    </g>
+  </g>
+</svg>

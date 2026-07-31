@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 80" width="100%" height="80">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;display=swap');
+      
+      .bg { fill: #0D1117; }
+      .text-head { font-family: 'Share Tech Mono', monospace; font-size: 18px; fill: #A855F7; font-weight: bold; letter-spacing: 4px; }
+      .glow-purple { filter: url(#glow-purple); }
+      
+      .stream { stroke-dasharray: 20 10; animation: flowing 3s linear infinite; }
+      @keyframes flowing { to { stroke-dashoffset: -100; } }
+    </style>
+    <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="1000" height="80" class="bg" />
+  
+  <line x1="500" y1="0" x2="500" y2="20" stroke="#3B82F6" stroke-width="2" />
+  <line x1="500" y1="60" x2="500" y2="80" stroke="#3B82F6" stroke-width="2" class="stream" />
+  
+  <g transform="translate(500, 40)" text-anchor="middle">
+    <!-- Left lines -->
+    <path d="M -300 0 L -150 0 L -130 -10 L -100 -10" fill="none" stroke="#8B5CF6" stroke-width="2" opacity="0.5" />
+    <!-- Right lines -->
+    <path d="M 300 0 L 150 0 L 130 10 L 100 10" fill="none" stroke="#8B5CF6" stroke-width="2" opacity="0.5" />
+    
+    <text x="0" y="5" class="text-head glow-purple">MODULES: FEATURED_PROJECTS</text>
+  </g>
+</svg>

@@ -1,117 +1,164 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="100%" height="300">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 750" width="100%" height="100%">
   <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&amp;family=Share+Tech+Mono&amp;display=swap');
-      
+      @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&amp;display=swap');
+
       .bg { fill: #0D1117; }
-      .panel { fill: #161B22; stroke: #3B82F6; stroke-width: 1; }
+      .panel { fill: rgba(22, 27, 34, 0.7); stroke: #3B82F6; stroke-width: 1; }
+      .panel-cyan { stroke: #00E5FF; }
       .panel-purple { stroke: #8B5CF6; }
       
-      .text-title { font-family: 'Orbitron', sans-serif; font-size: 16px; font-weight: 700; fill: #FFFFFF; }
-      .text-data { font-family: 'Share Tech Mono', monospace; font-size: 14px; fill: #A855F7; }
-      .text-label { font-family: 'Share Tech Mono', monospace; font-size: 12px; fill: #3B82F6; }
+      .text-title { font-family: 'Orbitron', sans-serif; font-size: 18px; font-weight: 700; fill: #FFFFFF; }
+      .text-sub { font-family: 'Share Tech Mono', monospace; font-size: 14px; fill: #A855F7; }
+      .text-data { font-family: 'Share Tech Mono', monospace; font-size: 14px; fill: #FFFFFF; }
+      .text-cyan { fill: #00E5FF; }
       
-      .scanline {
-        fill: rgba(139, 92, 246, 0.2);
-        animation: scan 4s linear infinite;
-      }
-      
-      @keyframes scan {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(300px); }
-      }
+      .glow-cyan { filter: url(#glow-cyan); }
+      .glow-purple { filter: url(#glow-purple); }
 
-      .pulse-dot {
-        fill: #8B5CF6;
-        animation: pulse 1.5s infinite;
-      }
-
+      .pulse-dot { animation: pulse 1.5s infinite; }
       @keyframes pulse {
-        0% { transform: scale(0.95); opacity: 0.5; }
+        0% { transform: scale(0.8); opacity: 0.5; }
         50% { transform: scale(1.2); opacity: 1; }
-        100% { transform: scale(0.95); opacity: 0.5; }
+        100% { transform: scale(0.8); opacity: 0.5; }
+      }
+
+      .progress-bar { animation: loadBar 3s ease-in-out infinite alternate; }
+      @keyframes loadBar {
+        0% { width: 50px; }
+        100% { width: var(--max-width); }
       }
     </style>
+    
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
   </defs>
 
-  <!-- Background -->
-  <rect width="100%" height="300" class="bg" />
-  
-  <!-- Grid -->
-  <path d="M 0 50 L 800 50 M 0 100 L 800 100 M 0 150 L 800 150 M 0 200 L 800 200 M 0 250 L 800 250" stroke="#3B82F6" stroke-width="0.2" opacity="0.5" />
-  <path d="M 100 0 L 100 300 M 200 0 L 200 300 M 300 0 L 300 300 M 400 0 L 400 300 M 500 0 L 500 300 M 600 0 L 600 300 M 700 0 L 700 300" stroke="#3B82F6" stroke-width="0.2" opacity="0.5" />
+  <rect width="650" height="750" class="bg" />
 
-  <!-- Scanline effect -->
-  <rect width="800" height="20" class="scanline" />
+  <!-- Grid overlay -->
+  <path d="M 0 50 L 650 50 M 0 100 L 650 100 M 0 150 L 650 150 M 0 200 L 650 200 M 0 250 L 650 250 M 0 300 L 650 300 M 0 350 L 650 350 M 0 400 L 650 400 M 0 450 L 650 450 M 0 500 L 650 500 M 0 550 L 650 550 M 0 600 L 650 600 M 0 650 L 650 650 M 0 700 L 650 700" stroke="#3B82F6" stroke-width="0.2" opacity="0.2" />
+  <path d="M 100 0 L 100 750 M 200 0 L 200 750 M 300 0 L 300 750 M 400 0 L 400 750 M 500 0 L 500 750 M 600 0 L 600 750" stroke="#3B82F6" stroke-width="0.2" opacity="0.2" />
 
-  <!-- Top Right decorative -->
-  <g transform="translate(650, 20)">
-    <rect x="0" y="0" width="10" height="10" fill="#3B82F6" opacity="0.8"/>
-    <rect x="15" y="0" width="10" height="10" fill="#8B5CF6" opacity="0.8"/>
-    <rect x="30" y="0" width="10" height="10" fill="#A855F7" opacity="0.8"/>
-    <text x="50" y="10" class="text-label" fill="#FFFFFF">SYS.V1</text>
+  <!-- Top Right Header -->
+  <g transform="translate(500, 20)">
+    <rect x="0" y="0" width="10" height="10" fill="#3B82F6" />
+    <rect x="15" y="0" width="10" height="10" fill="#00E5FF" class="glow-cyan pulse-dot" />
+    <rect x="30" y="0" width="10" height="10" fill="#A855F7" />
+    <text x="50" y="10" class="text-sub" fill="#FFFFFF">SYS.V1</text>
   </g>
 
-  <!-- Dashboard Panels -->
-  
-  <!-- Current Mission Panel -->
-  <g transform="translate(40, 40)">
-    <rect x="0" y="0" width="340" height="100" class="panel panel-purple" rx="5" />
-    <path d="M 0 25 L 340 25" stroke="#8B5CF6" stroke-width="1" />
-    <text x="15" y="18" class="text-title">CURRENT MISSION</text>
-    <circle cx="320" cy="12" r="4" class="pulse-dot" />
+  <!-- PANEL 1: MISSION CONTROL -->
+  <g transform="translate(30, 40)">
+    <rect x="0" y="0" width="590" height="160" class="panel panel-cyan" rx="8" />
+    <path d="M 0 35 L 590 35" stroke="#00E5FF" stroke-width="1" />
+    <text x="20" y="24" class="text-title text-cyan glow-cyan">MISSION CONTROL</text>
+    <circle cx="560" cy="18" r="5" fill="#00E5FF" class="pulse-dot glow-cyan" />
     
-    <text x="15" y="50" class="text-label">OBJECTIVE:</text>
-    <text x="15" y="70" class="text-data" fill="#FFFFFF">Building AI that solves real-world problems.</text>
-    <text x="15" y="90" class="text-label">LOCATION: <tspan fill="#A855F7">INDIA [GEO_LOCK_ACQUIRED]</tspan></text>
+    <text x="20" y="65" class="text-sub">CURRENT DIRECTIVE:</text>
+    <text x="180" y="65" class="text-data">Engineering state-of-the-art AI systems.</text>
+    
+    <text x="20" y="95" class="text-sub">RESEARCH FOCUS:</text>
+    <text x="180" y="95" class="text-data">Deep Learning, Full-Stack Architectures.</text>
+    
+    <text x="20" y="125" class="text-sub">COMPUTATION TGT:</text>
+    <text x="180" y="125" class="text-data text-cyan">TensorFlow Lite, FastAPI, React Native</text>
   </g>
 
-  <!-- Identity Panel -->
-  <g transform="translate(420, 40)">
-    <rect x="0" y="0" width="340" height="100" class="panel" rx="5" />
-    <path d="M 0 25 L 340 25" stroke="#3B82F6" stroke-width="1" />
-    <text x="15" y="18" class="text-title">IDENTITY RECORD</text>
+  <!-- PANEL 2: SYSTEM HEALTH -->
+  <g transform="translate(30, 220)">
+    <rect x="0" y="0" width="285" height="180" class="panel panel-purple" rx="8" />
+    <path d="M 0 35 L 285 35" stroke="#8B5CF6" stroke-width="1" />
+    <text x="20" y="24" class="text-title text-sub">SYSTEM HEALTH</text>
     
-    <text x="15" y="45" class="text-label">NAME: <tspan fill="#FFFFFF">S.G. RATHENESH</tspan></text>
-    <text x="15" y="65" class="text-label">ROLES:</text>
-    <text x="65" y="65" class="text-data">> AI Developer</text>
-    <text x="65" y="85" class="text-data">> Full Stack Developer</text>
-    <text x="15" y="105" class="text-data">> CS Engineering Student</text>
+    <!-- CPU/Core graphics -->
+    <text x="20" y="65" class="text-sub">CORE 1 [AI]:</text>
+    <rect x="130" y="55" width="130" height="10" fill="#161B22" stroke="#3B82F6" />
+    <rect x="130" y="55" width="115" height="10" fill="#A855F7" class="glow-purple" />
+    
+    <text x="20" y="95" class="text-sub">CORE 2 [WEB]:</text>
+    <rect x="130" y="85" width="130" height="10" fill="#161B22" stroke="#3B82F6" />
+    <rect x="130" y="85" width="90" height="10" fill="#3B82F6" />
+    
+    <text x="20" y="125" class="text-sub">CORE 3 [DB]:</text>
+    <rect x="130" y="115" width="130" height="10" fill="#161B22" stroke="#3B82F6" />
+    <rect x="130" y="115" width="125" height="10" fill="#00E5FF" class="glow-cyan" />
+
+    <text x="20" y="160" class="text-sub">MEMORY:</text>
+    <text x="130" y="160" class="text-data">ALLOCATED [98%]</text>
   </g>
 
-  <!-- Active Projects Panel -->
-  <g transform="translate(40, 160)">
-    <rect x="0" y="0" width="720" height="110" class="panel panel-purple" rx="5" />
-    <path d="M 0 25 L 720 25" stroke="#8B5CF6" stroke-width="1" />
-    <text x="15" y="18" class="text-title">SYSTEM PROCESSES (PROJECTS)</text>
-    
-    <!-- Process Bars -->
-    <g transform="translate(15, 40)">
-      <text x="0" y="10" class="text-label">SpendGuard AI</text>
-      <rect x="150" y="2" width="200" height="8" fill="#161B22" stroke="#3B82F6" />
-      <rect x="150" y="2" width="180" height="8" fill="#8B5CF6" />
-      <text x="360" y="10" class="text-data">90% [OPTIMIZING]</text>
+  <!-- PANEL 3: AI CORE -->
+  <g transform="translate(335, 220)">
+    <rect x="0" y="0" width="285" height="180" class="panel" rx="8" />
+    <path d="M 0 35 L 285 35" stroke="#3B82F6" stroke-width="1" />
+    <text x="20" y="24" class="text-title text-sub">AI CORE ENGINE</text>
+
+    <!-- Glowing Hex/Node structure -->
+    <g transform="translate(142, 105)">
+      <circle cx="0" cy="0" r="40" fill="none" stroke="#3B82F6" stroke-width="2" stroke-dasharray="10 5" class="rotate-cw" />
+      <circle cx="0" cy="0" r="25" fill="none" stroke="#00E5FF" stroke-width="2" class="glow-cyan pulse-dot" />
+      <polygon points="0,-15 13,-7.5 13,7.5 0,15 -13,7.5 -13,-7.5" fill="none" stroke="#A855F7" stroke-width="2" class="rotate-ccw glow-purple" />
       
-      <text x="0" y="35" class="text-label">AI Hospital System</text>
-      <rect x="150" y="27" width="200" height="8" fill="#161B22" stroke="#3B82F6" />
-      <rect x="150" y="27" width="150" height="8" fill="#3B82F6" />
-      <text x="360" y="35" class="text-data">75% [DEPLOYING]</text>
+      <!-- Nodes -->
+      <line x1="0" y1="-40" x2="0" y2="-60" stroke="#00E5FF" stroke-width="2" />
+      <circle cx="0" cy="-60" r="4" fill="#00E5FF" />
       
-      <text x="0" y="60" class="text-label">GeoSecure AI</text>
-      <rect x="150" y="52" width="200" height="8" fill="#161B22" stroke="#3B82F6" />
-      <rect x="150" y="52" width="100" height="8" fill="#A855F7" />
-      <text x="360" y="60" class="text-data">50% [TRAINING]</text>
+      <line x1="35" y1="20" x2="50" y2="30" stroke="#A855F7" stroke-width="2" />
+      <circle cx="50" cy="30" r="4" fill="#A855F7" />
+      
+      <line x1="-35" y1="20" x2="-50" y2="30" stroke="#3B82F6" stroke-width="2" />
+      <circle cx="-50" cy="30" r="4" fill="#3B82F6" />
+    </g>
+  </g>
+
+  <!-- PANEL 4: DEPLOYMENT STATUS (ACTIVE PROJECTS OVERVIEW) -->
+  <g transform="translate(30, 420)">
+    <rect x="0" y="0" width="590" height="300" class="panel panel-purple" rx="8" />
+    <path d="M 0 35 L 590 35" stroke="#8B5CF6" stroke-width="1" />
+    <text x="20" y="24" class="text-title text-sub glow-purple">DEPLOYMENT STATUS</text>
+    
+    <!-- SpendGuard AI -->
+    <g transform="translate(20, 60)">
+      <rect x="0" y="0" width="550" height="60" fill="rgba(139, 92, 246, 0.1)" stroke="#8B5CF6" stroke-width="1" rx="4" />
+      <text x="15" y="25" class="text-title text-data">SpendGuard AI</text>
+      <text x="15" y="45" class="text-sub" fill="#3B82F6">TFLite / Offline / Fraud Detection</text>
+      
+      <text x="350" y="25" class="text-data text-cyan glow-cyan">95%</text>
+      <rect x="390" y="17" width="140" height="8" fill="#161B22" stroke="#3B82F6" />
+      <rect x="390" y="17" width="133" height="8" fill="#00E5FF" class="glow-cyan" />
+      <text x="350" y="45" class="text-sub" font-size="10">STATUS: DEPLOYED</text>
     </g>
 
-    <!-- Neural Network Graphic inside panel -->
-    <g transform="translate(600, 50)">
-      <circle cx="10" cy="10" r="3" fill="#8B5CF6" />
-      <circle cx="10" cy="40" r="3" fill="#8B5CF6" />
-      <circle cx="50" cy="25" r="3" fill="#3B82F6" />
-      <circle cx="90" cy="10" r="3" fill="#A855F7" />
-      <circle cx="90" cy="40" r="3" fill="#A855F7" />
+    <!-- AI Hospital System -->
+    <g transform="translate(20, 140)">
+      <rect x="0" y="0" width="550" height="60" fill="rgba(0, 229, 255, 0.1)" stroke="#00E5FF" stroke-width="1" rx="4" />
+      <text x="15" y="25" class="text-title text-data">AI Hospital System</text>
+      <text x="15" y="45" class="text-sub" fill="#3B82F6">React / FastAPI / Groq AI</text>
       
-      <path d="M 10 10 L 50 25 M 10 40 L 50 25 M 50 25 L 90 10 M 50 25 L 90 40" stroke="#3B82F6" stroke-width="1" opacity="0.5" />
+      <text x="350" y="25" class="text-data text-cyan glow-cyan">80%</text>
+      <rect x="390" y="17" width="140" height="8" fill="#161B22" stroke="#3B82F6" />
+      <rect x="390" y="17" width="112" height="8" fill="#8B5CF6" class="glow-purple" />
+      <text x="350" y="45" class="text-sub" font-size="10">STATUS: OPTIMIZING</text>
+    </g>
+
+    <!-- GeoSecure AI -->
+    <g transform="translate(20, 220)">
+      <rect x="0" y="0" width="550" height="60" fill="rgba(59, 130, 246, 0.1)" stroke="#3B82F6" stroke-width="1" rx="4" />
+      <text x="15" y="25" class="text-title text-data">GeoSecure AI</text>
+      <text x="15" y="45" class="text-sub" fill="#3B82F6">AWS Cloud / GPS Sync</text>
+      
+      <text x="350" y="25" class="text-data text-cyan glow-cyan">60%</text>
+      <rect x="390" y="17" width="140" height="8" fill="#161B22" stroke="#3B82F6" />
+      <rect x="390" y="17" width="84" height="8" fill="#3B82F6" />
+      <text x="350" y="45" class="text-sub" font-size="10">STATUS: TRAINING</text>
     </g>
   </g>
 
