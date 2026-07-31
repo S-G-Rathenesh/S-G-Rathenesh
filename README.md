@@ -2,6 +2,9 @@
 
 <picture><img src="assets/master_os_top.svg" width="100%" alt="Cyberpunk AI Operating System - Top Layer"></picture>
 
+<!-- Embedded Live GitHub Telemetry -->
+<picture><img src="assets/stats_frame_top.svg" width="100%" alt="Stats Frame Top"></picture>
+
 <table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#0D1117">
   <tr>
     <td width="50%" align="center">
@@ -23,6 +26,9 @@
   <source media="(prefers-color-scheme: light)" srcset="dist/github-contribution-grid-snake.svg">
   <img alt="github contribution grid snake animation" src="dist/github-contribution-grid-snake-dark.svg" width="100%">
 </picture>
+
+<picture><img src="assets/stats_frame_bottom.svg" width="100%" alt="Stats Frame Bottom"></picture>
+<!-- End of Embedded Live Data -->
 
 <picture><img src="assets/master_os_bottom.svg" width="100%" alt="Cyberpunk AI Operating System - Bottom Layer"></picture>
 

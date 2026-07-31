@@ -14,10 +14,7 @@
       @keyframes stream { to { stroke-dashoffset: -100; } }
 
       .pulse { animation: pulsing 3s infinite alternate; }
-      @keyframes pulsing {
-        0% { opacity: 0.5; filter: brightness(1); }
-        100% { opacity: 1; filter: brightness(1.5); }
-      }
+      @keyframes pulsing { 0% { opacity: 0.5; filter: brightness(1); } 100% { opacity: 1; filter: brightness(1.5); } }
 
       /* Typing sequences */
       .type-1, .type-2, .type-3, .type-4, .type-5 { opacity: 0; }
@@ -40,32 +37,32 @@
       .text-year { font-family: 'Share Tech Mono', monospace; font-size: 18px; fill: #00E5FF; font-weight: bold; }
       .text-desc { font-family: 'Share Tech Mono', monospace; font-size: 13px; fill: #FFFFFF; }
       .text-title { font-family: 'Orbitron', sans-serif; font-size: 14px; fill: #A855F7; }
+
+      .signal-travel { stroke-dasharray: 20 800; stroke-width: 4; animation: travel 8s linear infinite; }
+      @keyframes travel { to { stroke-dashoffset: -800; } }
     </style>
     
-    <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="5" result="blur" />
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="6" result="blur" />
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="4" result="blur" />
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+    <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="blur" /><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6" result="blur" /><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="4" result="blur" /><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     
     <filter id="noise">
       <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
-      <feColorMatrix type="matrix" values="1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 0.05 0" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 0.08 0" />
     </filter>
+
+    <linearGradient id="fog-bottom" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="rgba(139, 92, 246, 0.15)" />
+      <stop offset="100%" stop-color="rgba(13, 17, 23, 0)" />
+    </linearGradient>
   </defs>
 
   <rect width="1000" height="800" class="bg" />
+  <rect x="0" y="400" width="1000" height="400" fill="url(#fog-bottom)" />
   <rect width="1000" height="800" fill="url(#noise)" style="mix-blend-mode: overlay;" />
 
   <!-- Receive Circuit Traces from Stats Layer Above -->
-  <g opacity="0.4">
+  <g opacity="0.6">
     <path d="M 200 0 L 200 400" stroke="#3B82F6" stroke-width="2" class="data-stream" />
     <path d="M 500 0 L 500 800" stroke="#00E5FF" stroke-width="2" class="glow-cyan data-stream" />
     <path d="M 800 0 L 800 400" stroke="#8B5CF6" stroke-width="2" class="data-stream" />
@@ -75,25 +72,35 @@
   </g>
 
   <!-- ========================================== -->
+  <!-- HAZARD STRIPES (CONTRIBUTION MATRIX)       -->
+  <!-- ========================================== -->
+  <g transform="translate(0, 0)">
+    <rect x="0" y="0" width="1000" height="20" fill="rgba(168, 85, 247, 0.1)" />
+    <path d="M 0 10 L 1000 10" stroke="#A855F7" stroke-width="2" stroke-dasharray="20 20" class="glow-purple data-stream" />
+    <text x="500" y="15" font-family="'Orbitron', sans-serif" font-size="12" fill="#FFFFFF" text-anchor="middle" letter-spacing="4px">CONTRIBUTION_MATRIX_CONTAINMENT</text>
+  </g>
+
+  <!-- ========================================== -->
   <!-- TIMELINE / ROADMAP                           -->
   <!-- ========================================== -->
 
-  <g transform="translate(0, 100)">
+  <g transform="translate(0, 150)">
     <line x1="100" y1="0" x2="900" y2="0" stroke="#3B82F6" stroke-width="1" />
     <line x1="300" y1="0" x2="700" y2="0" stroke="#00E5FF" stroke-width="3" class="glow-cyan pulse" />
     <text x="500" y="-10" font-family="'Orbitron', sans-serif" font-size="20" fill="#FFFFFF" text-anchor="middle" letter-spacing="4px">FUTURE_ROADMAP</text>
   </g>
 
-  <g transform="translate(50, 250)">
-    <!-- Base Timeline Line -->
+  <g transform="translate(50, 300)">
+    <!-- Base Timeline Line with Glass Layer -->
+    <rect x="0" y="-10" width="900" height="20" fill="rgba(255,255,255,0.02)" rx="10" />
     <line x1="0" y1="0" x2="900" y2="0" stroke="#3B82F6" stroke-width="4" />
     <line x1="0" y1="0" x2="900" y2="0" stroke="#00E5FF" stroke-width="8" opacity="0.5" class="glow-cyan" />
-    <line x1="0" y1="0" x2="900" y2="0" stroke="#FFFFFF" stroke-width="1" stroke-dasharray="10" />
+    <line x1="0" y1="0" x2="900" y2="0" stroke="#FFFFFF" class="signal-travel" />
     
     <!-- Milestone 1 -->
     <g transform="translate(100, 0)">
-      <circle cx="0" cy="0" r="14" class="node-outer" />
-      <circle cx="0" cy="0" r="6" class="node-inner pulse glow-cyan" />
+      <circle cx="0" cy="0" r="14" class="node-outer" fill="#0D1117" />
+      <circle cx="0" cy="0" r="6" class="node-inner pulse glow-cyan" style="animation-delay: 0s" />
       <line x1="0" y1="-14" x2="0" y2="-40" stroke="#3B82F6" stroke-width="2" />
       <text x="0" y="-55" text-anchor="middle" class="text-year">INIT</text>
       <text x="0" y="-75" text-anchor="middle" class="text-title">FOUNDATION</text>
@@ -103,8 +110,8 @@
 
     <!-- Milestone 2 -->
     <g transform="translate(350, 0)">
-      <circle cx="0" cy="0" r="14" class="node-outer" />
-      <circle cx="0" cy="0" r="6" class="node-inner pulse glow-cyan" />
+      <circle cx="0" cy="0" r="14" class="node-outer" fill="#0D1117" />
+      <circle cx="0" cy="0" r="6" class="node-inner pulse glow-cyan" style="animation-delay: 0.5s" />
       <line x1="0" y1="14" x2="0" y2="40" stroke="#3B82F6" stroke-width="2" />
       <text x="0" y="65" text-anchor="middle" class="text-year">DEV</text>
       <text x="0" y="85" text-anchor="middle" class="text-title">FULL-STACK</text>
@@ -114,8 +121,8 @@
 
     <!-- Milestone 3 -->
     <g transform="translate(600, 0)">
-      <circle cx="0" cy="0" r="18" class="node-outer glow-cyan" stroke="#00E5FF" stroke-width="3" />
-      <circle cx="0" cy="0" r="8" class="node-inner pulse glow-cyan" fill="#A855F7" />
+      <circle cx="0" cy="0" r="18" class="node-outer glow-cyan" stroke="#00E5FF" stroke-width="3" fill="#0D1117" />
+      <circle cx="0" cy="0" r="8" class="node-inner pulse glow-cyan" fill="#A855F7" style="animation-delay: 1s" />
       <line x1="0" y1="-18" x2="0" y2="-40" stroke="#00E5FF" stroke-width="2" />
       <text x="0" y="-55" text-anchor="middle" class="text-year">AI_CORE</text>
       <text x="0" y="-75" text-anchor="middle" class="text-title glow-cyan text-cyan">INTELLIGENCE</text>
@@ -125,8 +132,8 @@
 
     <!-- Milestone 4 -->
     <g transform="translate(850, 0)">
-      <circle cx="0" cy="0" r="14" class="node-outer" />
-      <circle cx="0" cy="0" r="6" class="node-inner pulse glow-cyan" />
+      <circle cx="0" cy="0" r="14" class="node-outer" fill="#0D1117" />
+      <circle cx="0" cy="0" r="6" class="node-inner pulse glow-cyan" style="animation-delay: 1.5s" />
       <line x1="0" y1="14" x2="0" y2="40" stroke="#3B82F6" stroke-width="2" />
       <text x="0" y="65" text-anchor="middle" class="text-year">SCALE</text>
       <text x="0" y="85" text-anchor="middle" class="text-title">IMPACT</text>
@@ -139,13 +146,13 @@
   <!-- FOOTER / SHUTDOWN SEQUENCE                   -->
   <!-- ========================================== -->
   
-  <g transform="translate(250, 550)">
+  <g transform="translate(250, 600)">
     <!-- Terminal Background -->
-    <rect x="0" y="0" width="500" height="150" fill="rgba(0,0,0,0.5)" stroke="#3B82F6" stroke-width="1" rx="5" />
+    <rect x="0" y="0" width="500" height="150" fill="rgba(13, 17, 23, 0.9)" stroke="#3B82F6" stroke-width="1.5" rx="5" filter="drop-shadow(0 10px 20px rgba(0,0,0,0.5))" />
     <path d="M 0 30 L 500 30" stroke="#3B82F6" stroke-width="1" opacity="0.5" />
     <circle cx="15" cy="15" r="5" fill="#FF0055" />
     <circle cx="35" cy="15" r="5" fill="#FFB000" />
-    <circle cx="55" cy="15" r="5" fill="#00E5FF" />
+    <circle cx="55" cy="15" r="5" fill="#00E5FF" class="glow-cyan" />
     
     <g transform="translate(20, 60)">
       <text x="0" y="0" class="text-terminal text-purple">root@sg-rathenesh:~$</text>

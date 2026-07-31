@@ -3,6 +3,7 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;display=swap');
       @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&amp;display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
 
       .bg { fill: #0D1117; }
       
@@ -11,10 +12,12 @@
       .text-data { font-family: 'Share Tech Mono', monospace; font-size: 15px; fill: #FFFFFF; }
       .text-cyan { fill: #00E5FF; }
       .text-purple { fill: #A855F7; }
+      .text-code { font-family: 'JetBrains Mono', monospace; font-size: 12px; fill: #3B82F6; }
       
       .glow-blue { filter: url(#glow-blue); }
       .glow-purple { filter: url(#glow-purple); }
       .glow-cyan { filter: url(#glow-cyan); }
+      .bloom { filter: url(#bloom); }
 
       /* Rotations */
       .rotate-cw { animation: spin 40s linear infinite; transform-origin: 300px 450px; }
@@ -25,77 +28,73 @@
       @keyframes spin-rev { 100% { transform: rotate(-360deg); } }
       
       .pulse { animation: pulsing 3s infinite alternate; }
-      @keyframes pulsing {
-        0% { opacity: 0.5; filter: brightness(1); }
-        100% { opacity: 1; filter: brightness(1.5); }
-      }
+      @keyframes pulsing { 0% { opacity: 0.5; filter: brightness(1); } 100% { opacity: 1; filter: brightness(1.5); } }
+
+      .pulse-fast { animation: pulsing-fast 0.5s infinite alternate; }
+      @keyframes pulsing-fast { 0% { opacity: 0.3; } 100% { opacity: 1; } }
 
       .breathe { animation: breathing 5s ease-in-out infinite alternate; }
-      @keyframes breathing {
-        0% { transform: scale(0.98); opacity: 0.8; }
-        100% { transform: scale(1.02); opacity: 1; }
-      }
+      @keyframes breathing { 0% { transform: scale(0.98); opacity: 0.8; } 100% { transform: scale(1.02); opacity: 1; } }
       
       .scanline { animation: scan 6s linear infinite; }
-      @keyframes scan {
-        0% { transform: translateY(-200px); opacity: 0; }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% { transform: translateY(800px); opacity: 0; }
-      }
+      @keyframes scan { 0% { transform: translateY(-200px); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(800px); opacity: 0; } }
       
       .blink { animation: blinking 1s step-end infinite; }
       @keyframes blinking { 50% { opacity: 0; } }
       
-      /* RGB Glitch */
+      /* Glitch & Chromatic Aberration */
       .glitch { animation: glitching 5s infinite; }
-      @keyframes glitching {
-        0%, 94%, 98%, 100% { transform: translate(0, 0); }
-        95% { transform: translate(-3px, 2px); filter: drop-shadow(3px 0 0 red); }
-        96% { transform: translate(3px, -2px); filter: drop-shadow(-3px 0 0 blue); }
-        97% { transform: translate(-2px, -3px); filter: drop-shadow(0 3px 0 lime); }
-      }
+      @keyframes glitching { 0%, 94%, 98%, 100% { transform: translate(0, 0); } 95% { transform: translate(-3px, 2px); filter: drop-shadow(4px 0 0 rgba(255,0,0,0.8)); } 96% { transform: translate(3px, -2px); filter: drop-shadow(-4px 0 0 rgba(0,229,255,0.8)); } 97% { transform: translate(-2px, -3px); filter: drop-shadow(0 4px 0 rgba(168,85,247,0.8)); } }
       
       .particle { animation: float-particle 4s ease-in-out infinite alternate; }
-      @keyframes float-particle {
-        0% { transform: translateY(0px) translateX(0px); }
-        100% { transform: translateY(-30px) translateX(15px); }
-      }
+      @keyframes float-particle { 0% { transform: translateY(0px) translateX(0px); } 100% { transform: translateY(-30px) translateX(15px); } }
       
       .data-stream { stroke-dasharray: 20 10; animation: stream 5s linear infinite; }
       @keyframes stream { to { stroke-dashoffset: -100; } }
+      
+      .data-packet { stroke-dasharray: 5 150; stroke-width: 4; stroke-linecap: round; animation: packetFlow 3s linear infinite; }
+      @keyframes packetFlow { to { stroke-dashoffset: -310; } }
 
-      .card { fill: rgba(13, 17, 23, 0.7); stroke: #8B5CF6; stroke-width: 1.5; transition: all 0.3s ease; backdrop-filter: blur(5px); }
+      .card { fill: rgba(13, 17, 23, 0.7); stroke: #3B82F6; stroke-width: 1.5; transition: all 0.3s ease; backdrop-filter: blur(5px); }
       .card-hover:hover .card { stroke: #00E5FF; stroke-width: 2.5; filter: url(#glow-cyan); }
       .card-hover:hover .hover-show { opacity: 1; }
       .hover-show { opacity: 0; transition: opacity 0.3s ease; }
       
-      .hologram { opacity: 0.1; }
+      /* Boot Sequence Animations */
+      .boot-overlay { animation: bootFadeOut 0.5s 4s forwards; }
+      @keyframes bootFadeOut { to { opacity: 0; pointer-events: none; visibility: hidden; } }
+      
+      .boot-text-1 { opacity: 0; animation: typeShow 0s 0.2s forwards; }
+      .boot-text-2 { opacity: 0; animation: typeShow 0s 1s forwards; }
+      .boot-text-3 { opacity: 0; animation: typeShow 0s 2s forwards; }
+      .boot-text-4 { opacity: 0; animation: typeShow 0s 3s forwards; }
+      @keyframes typeShow { to { opacity: 1; } }
+
+      .boot-bar { width: 0; animation: loadBar 0.8s 0.2s forwards; }
+      .boot-bar-2 { width: 0; animation: loadBar 1s 1s forwards; }
+      .boot-bar-3 { width: 0; animation: loadBar 0.8s 2s forwards; }
+      @keyframes loadBar { to { width: 300px; } }
+
+      /* Project Terminal Code Scroll */
+      .scroll-up { animation: scrolling 10s linear infinite; }
+      @keyframes scrolling { 0% { transform: translateY(20px); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-40px); opacity: 0; } }
     </style>
     
-    <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="5" result="blur" />
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="10" result="blur" />
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="6" result="blur" />
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+    <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5" result="blur" /><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="8" result="blur" /><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6" result="blur" /><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="bloom" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="40" result="blur" /><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     
     <!-- Background Effects -->
     <filter id="noise">
-      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
-      <feColorMatrix type="matrix" values="1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 0.05 0" />
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 0.08 0" />
     </filter>
     
-    <pattern id="hexGrid" width="40" height="69.28" patternUnits="userSpaceOnUse" patternTransform="scale(0.8)">
-      <path d="M20 0 L40 11.55 L40 34.64 L20 46.19 L0 34.64 L0 11.55 Z" fill="none" stroke="rgba(0, 229, 255, 0.1)" stroke-width="1"/>
-      <path d="M20 69.28 L40 57.74 L40 34.64" fill="none" stroke="rgba(0, 229, 255, 0.1)" stroke-width="1"/>
-      <path d="M0 34.64 L0 57.74 L20 69.28" fill="none" stroke="rgba(0, 229, 255, 0.1)" stroke-width="1"/>
+    <pattern id="hexGrid" width="60" height="103.92" patternUnits="userSpaceOnUse" patternTransform="scale(0.6)">
+      <path d="M30 0 L60 17.32 L60 51.96 L30 69.28 L0 51.96 L0 17.32 Z" fill="none" stroke="rgba(0, 229, 255, 0.08)" stroke-width="1.5"/>
+      <path d="M30 103.92 L60 86.6 L60 51.96" fill="none" stroke="rgba(0, 229, 255, 0.08)" stroke-width="1.5"/>
+      <path d="M0 51.96 L0 86.6 L30 103.92" fill="none" stroke="rgba(0, 229, 255, 0.08)" stroke-width="1.5"/>
     </pattern>
 
     <linearGradient id="avatar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -104,7 +103,12 @@
       <stop offset="100%" stop-color="#A855F7" />
     </linearGradient>
 
-    <!-- Gradient Fog -->
+    <!-- Glass Overlay -->
+    <linearGradient id="glass" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.05)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+    </linearGradient>
+
     <linearGradient id="fog" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="rgba(139, 92, 246, 0.15)" />
       <stop offset="50%" stop-color="rgba(0, 229, 255, 0.05)" />
@@ -114,15 +118,21 @@
 
   <!-- Base & Depth Layers -->
   <rect x="0" y="0" width="1000" height="2400" class="bg" />
-  <rect x="0" y="0" width="1000" height="2400" fill="url(#hexGrid)" opacity="0.3" />
-  <rect x="0" y="0" width="1000" height="1200" fill="url(#fog)" />
+  <rect x="0" y="0" width="1000" height="2400" fill="url(#hexGrid)" opacity="0.4" />
+  <rect x="0" y="0" width="1000" height="1500" fill="url(#fog)" />
   <rect x="0" y="0" width="1000" height="2400" fill="url(#noise)" style="mix-blend-mode: overlay;" />
 
   <!-- Continuous Motherboard Circuit Traces (Background Trunk) -->
-  <g opacity="0.4">
+  <g opacity="0.6">
     <path d="M 500 0 L 500 2400" fill="none" stroke="#3B82F6" stroke-width="2" class="data-stream" />
-    <path d="M 300 800 L 300 2400" fill="none" stroke="#8B5CF6" stroke-width="1" />
-    <path d="M 700 800 L 700 2400" fill="none" stroke="#00E5FF" stroke-width="1" />
+    <path d="M 500 0 L 500 2400" fill="none" stroke="#00E5FF" class="data-packet" />
+    
+    <path d="M 300 800 L 300 2400" fill="none" stroke="#8B5CF6" stroke-width="1.5" />
+    <path d="M 700 800 L 700 2400" fill="none" stroke="#00E5FF" stroke-width="1.5" />
+    
+    <path d="M 300 800 L 300 2400" fill="none" stroke="#A855F7" class="data-packet" style="animation-delay: -1s;" />
+    <path d="M 700 800 L 700 2400" fill="none" stroke="#00E5FF" class="data-packet" style="animation-delay: -2s;" />
+    
     <!-- Branching lines -->
     <path d="M 500 900 L 700 1000 M 500 1300 L 300 1400 M 500 1700 L 700 1800 M 500 2100 L 300 2200" fill="none" stroke="#3B82F6" stroke-width="2" class="data-stream" />
   </g>
@@ -139,39 +149,54 @@
 
   <!-- Massive AI Avatar Core (Center: x=300, y=450) -->
   <g id="avatar-core">
-    <!-- Outer Volumetric Glow -->
-    <circle cx="300" cy="450" r="250" fill="url(#avatar-grad)" opacity="0.1" class="glow-purple pulse" />
+    <!-- Inner Bloom & Reactor Core -->
+    <circle cx="300" cy="450" r="180" fill="url(#avatar-grad)" opacity="0.3" class="bloom pulse" />
     
+    <!-- Neural Network Extensions -->
+    <g stroke="#A855F7" stroke-width="2" opacity="0.4">
+      <path d="M 300 450 L 100 200 M 300 450 L 500 200 M 300 450 L 100 700 M 300 450 L 500 700" class="data-stream" />
+      <circle cx="100" cy="200" r="5" fill="#A855F7" class="glow-purple pulse" />
+      <circle cx="500" cy="200" r="5" fill="#A855F7" class="glow-purple pulse" />
+      <circle cx="100" cy="700" r="5" fill="#A855F7" class="glow-purple pulse" />
+      <circle cx="500" cy="700" r="5" fill="#A855F7" class="glow-purple pulse" />
+    </g>
+
     <!-- Rotating Rings -->
-    <circle cx="300" cy="450" r="220" fill="none" stroke="#3B82F6" stroke-width="1" opacity="0.5" />
-    <circle cx="300" cy="450" r="200" fill="none" stroke="#00E5FF" stroke-width="3" stroke-dasharray="100 20 10 20 5 30" class="rotate-cw glow-cyan" />
-    <circle cx="300" cy="450" r="185" fill="none" stroke="#A855F7" stroke-width="5" stroke-dasharray="5 15" class="rotate-ccw glow-purple" />
-    <circle cx="300" cy="450" r="170" fill="none" stroke="#3B82F6" stroke-width="2" stroke-dasharray="200 40 20 40" class="rotate-cw glow-blue" />
+    <circle cx="300" cy="450" r="240" fill="none" stroke="#3B82F6" stroke-width="1.5" opacity="0.6" stroke-dasharray="10 20" class="rotate-cw" />
+    <circle cx="300" cy="450" r="220" fill="none" stroke="#00E5FF" stroke-width="3" stroke-dasharray="120 30 15 30 5 40" class="rotate-ccw glow-cyan" />
+    <circle cx="300" cy="450" r="200" fill="none" stroke="#A855F7" stroke-width="5" stroke-dasharray="8 20" class="rotate-cw glow-purple" />
+    <circle cx="300" cy="450" r="180" fill="none" stroke="#3B82F6" stroke-width="2" stroke-dasharray="250 50 30 50" class="rotate-ccw glow-blue" />
+    
+    <!-- Hexagon Energy Shield -->
+    <polygon points="300,220 499,335 499,565 300,680 101,565 101,335" fill="none" stroke="#00E5FF" stroke-width="1.5" opacity="0.5" class="breathe glow-cyan" />
     
     <!-- AI Target Lock -->
     <g class="rotate-fast">
-      <path d="M 300 210 L 300 240 M 300 660 L 300 690 M 60 450 L 90 450 M 510 450 L 540 450" stroke="#00E5FF" stroke-width="4" class="glow-cyan" />
-      <circle cx="300" cy="210" r="4" fill="#FFFFFF" />
-      <circle cx="300" cy="690" r="4" fill="#FFFFFF" />
-      <circle cx="60" cy="450" r="4" fill="#FFFFFF" />
-      <circle cx="540" cy="450" r="4" fill="#FFFFFF" />
+      <path d="M 300 180 L 300 210 M 300 690 L 300 720 M 30 450 L 60 450 M 540 450 L 570 450" stroke="#00E5FF" stroke-width="4" class="glow-cyan" />
+      <circle cx="300" cy="180" r="5" fill="#FFFFFF" class="glow-cyan" />
+      <circle cx="300" cy="720" r="5" fill="#FFFFFF" class="glow-cyan" />
+      <circle cx="30" cy="450" r="5" fill="#FFFFFF" class="glow-cyan" />
+      <circle cx="570" cy="450" r="5" fill="#FFFFFF" class="glow-cyan" />
     </g>
 
     <!-- Vector AI Avatar (Glitchy Cyberpunk Face) -->
-    <g transform="translate(300, 450) scale(2.2)" class="glitch breathe">
-      <!-- Outer Head Structure -->
-      <path d="M -40 -65 L 40 -65 L 60 -30 L 60 40 L 30 75 L -30 75 L -60 40 L -60 -30 Z" fill="rgba(13, 17, 23, 0.9)" stroke="url(#avatar-grad)" stroke-width="3" />
-      <path d="M -40 -65 L 40 -65 L 60 -30 L 60 40 L 30 75 L -30 75 L -60 40 L -60 -30 Z" fill="none" stroke="#8B5CF6" stroke-width="5" opacity="0.4" filter="url(#glow-purple)" />
+    <g transform="translate(300, 450) scale(2.4)" class="glitch breathe">
+      <!-- Outer Head Structure (Chromatically split shadows) -->
+      <path d="M -40 -65 L 40 -65 L 60 -30 L 60 40 L 30 75 L -30 75 L -60 40 L -60 -30 Z" fill="none" stroke="rgba(255,0,0,0.5)" stroke-width="4" transform="translate(-2, 2)" />
+      <path d="M -40 -65 L 40 -65 L 60 -30 L 60 40 L 30 75 L -30 75 L -60 40 L -60 -30 Z" fill="none" stroke="rgba(0,229,255,0.5)" stroke-width="4" transform="translate(2, -2)" />
+      <path d="M -40 -65 L 40 -65 L 60 -30 L 60 40 L 30 75 L -30 75 L -60 40 L -60 -30 Z" fill="rgba(13, 17, 23, 0.95)" stroke="url(#avatar-grad)" stroke-width="3" />
+      <path d="M -40 -65 L 40 -65 L 60 -30 L 60 40 L 30 75 L -30 75 L -60 40 L -60 -30 Z" fill="none" stroke="#8B5CF6" stroke-width="5" opacity="0.6" filter="url(#glow-purple)" />
       
-      <!-- Inner Visor -->
-      <path d="M -50 -15 L 50 -15 L 45 20 L -45 20 Z" fill="#0D1117" />
+      <!-- Inner Visor Glass -->
+      <path d="M -50 -15 L 50 -15 L 45 20 L -45 20 Z" fill="rgba(0,0,0,0.8)" />
+      <path d="M -50 -15 L 50 -15 L 45 20 L -45 20 Z" fill="url(#glass)" />
       <rect x="-45" y="-10" width="90" height="3" fill="#00E5FF" class="glow-cyan pulse" />
       <rect x="-40" y="5" width="80" height="2" fill="#A855F7" opacity="0.7" />
       
       <!-- Core Eye -->
       <circle cx="0" cy="2" r="8" fill="#FFFFFF" class="glow-cyan pulse" />
       <circle cx="0" cy="2" r="16" fill="none" stroke="#00E5FF" stroke-width="1.5" class="rotate-fast" stroke-dasharray="6 4" />
-      <circle cx="0" cy="2" r="24" fill="none" stroke="#A855F7" stroke-width="1" class="rotate-ccw" stroke-dasharray="3 8" />
+      <circle cx="0" cy="2" r="24" fill="none" stroke="#A855F7" stroke-width="1.5" class="rotate-ccw" stroke-dasharray="3 8" />
       
       <!-- Neural Circuit Lines -->
       <path d="M -30 -65 L -30 -40 L -15 -30 M 30 -65 L 30 -40 L 15 -30 M 0 -65 L 0 -35" stroke="#A855F7" stroke-width="2" fill="none" />
@@ -180,18 +205,18 @@
     
     <!-- Giant Scanline across Avatar -->
     <g transform="translate(300, 450)">
-      <rect x="-250" y="0" width="500" height="6" fill="#00E5FF" class="scanline glow-cyan" />
-      <path d="M -250 0 L 250 0 L 230 80 L -230 80 Z" fill="rgba(0, 229, 255, 0.05)" class="scanline" />
+      <rect x="-300" y="0" width="600" height="6" fill="#00E5FF" class="scanline glow-cyan" />
+      <path d="M -300 0 L 300 0 L 280 100 L -280 100 Z" fill="rgba(0, 229, 255, 0.05)" class="scanline" />
     </g>
     
     <!-- Floating Sparks & Binary Rain -->
-    <g opacity="0.6">
-      <circle cx="150" cy="250" r="3" fill="#00E5FF" class="particle glow-cyan" />
-      <circle cx="450" cy="300" r="4" fill="#A855F7" class="particle glow-purple" style="animation-delay: -1s" />
-      <circle cx="200" cy="600" r="3" fill="#8B5CF6" class="particle glow-purple" style="animation-delay: -2s" />
-      <circle cx="400" cy="550" r="2" fill="#FFFFFF" class="particle pulse" style="animation-delay: -3s" />
-      <text x="120" y="400" font-family="'Share Tech Mono', monospace" font-size="10" fill="#00E5FF" class="particle">010110</text>
-      <text x="480" y="350" font-family="'Share Tech Mono', monospace" font-size="10" fill="#A855F7" class="particle" style="animation-delay: -1.5s">110011</text>
+    <g opacity="0.8">
+      <circle cx="150" cy="250" r="3.5" fill="#00E5FF" class="particle glow-cyan" />
+      <circle cx="450" cy="300" r="4.5" fill="#A855F7" class="particle glow-purple" style="animation-delay: -1s" />
+      <circle cx="200" cy="600" r="3.5" fill="#8B5CF6" class="particle glow-purple" style="animation-delay: -2s" />
+      <circle cx="400" cy="550" r="2.5" fill="#FFFFFF" class="particle pulse" style="animation-delay: -3s" />
+      <text x="120" y="400" font-family="'Share Tech Mono', monospace" font-size="12" fill="#00E5FF" class="particle">010110</text>
+      <text x="480" y="350" font-family="'Share Tech Mono', monospace" font-size="12" fill="#A855F7" class="particle" style="animation-delay: -1.5s">110011</text>
     </g>
   </g>
 
@@ -199,12 +224,12 @@
   <!-- HERO SECTION : MISSION CONSOLE             -->
   <!-- ========================================== -->
   
-  <g transform="translate(600, 150)">
+  <g transform="translate(620, 150)">
     
     <!-- Massive Identity Block -->
-    <rect x="0" y="0" width="370" height="60" fill="rgba(0, 229, 255, 0.1)" stroke="#00E5FF" stroke-width="2" class="glow-cyan" rx="5" />
+    <rect x="0" y="0" width="350" height="60" fill="rgba(0, 229, 255, 0.1)" stroke="#00E5FF" stroke-width="2" class="glow-cyan" rx="5" />
     <text x="20" y="40" class="text-title glow-cyan text-cyan" font-size="32">S-G-RATHENESH</text>
-    <rect x="330" y="20" width="20" height="20" fill="#00E5FF" class="blink glow-cyan" />
+    <rect x="310" y="20" width="20" height="20" fill="#00E5FF" class="blink glow-cyan" />
 
     <!-- Terminal Status Block -->
     <g transform="translate(0, 80)">
@@ -213,7 +238,7 @@
       
       <text x="0" y="55" class="text-sub">SYS_STATUS:</text>
       <text x="130" y="55" class="text-data">ONLINE &amp; RESPONSIVE</text>
-      <circle cx="340" cy="50" r="5" fill="#8B5CF6" class="pulse glow-purple" />
+      <circle cx="330" cy="50" r="5" fill="#8B5CF6" class="pulse-fast glow-purple" />
       
       <text x="0" y="90" class="text-sub">SECURITY:</text>
       <text x="130" y="90" class="text-data text-purple glow-purple">MAXIMUM ENCRYPTION</text>
@@ -231,35 +256,34 @@
       <text x="240" y="160" class="text-data">80% [STABLE]</text>
     </g>
 
-    <!-- CPU Load Visualizer -->
+    <!-- CPU Load Visualizer with Data Packets -->
     <g transform="translate(0, 270)">
-      <path d="M 0 0 L 370 0" stroke="#3B82F6" stroke-width="1" stroke-dasharray="5 5" />
+      <path d="M 0 0 L 350 0" stroke="#3B82F6" stroke-width="1" stroke-dasharray="5 5" />
       <text x="0" y="30" class="text-sub">CPU ACTIVITY (AI / WEB / DB)</text>
       <!-- Activity Waveform -->
-      <path d="M 0 70 L 20 60 L 40 80 L 60 50 L 80 75 L 100 40 L 120 70 L 140 30 L 160 80 L 180 50 L 200 65 L 220 40 L 240 75 L 260 45 L 280 65 L 300 40 L 320 80 L 340 50 L 360 65 L 370 70" fill="none" stroke="#A855F7" stroke-width="2" class="glow-purple pulse" opacity="0.8" />
-      <path d="M 0 70 L 20 60 L 40 80 L 60 50 L 80 75 L 100 40 L 120 70 L 140 30 L 160 80 L 180 50 L 200 65 L 220 40 L 240 75 L 260 45 L 280 65 L 300 40 L 320 80 L 340 50 L 360 65 L 370 70 L 370 90 L 0 90 Z" fill="rgba(168, 85, 247, 0.15)" stroke="none" />
-      <line x1="0" y1="90" x2="370" y2="90" stroke="#3B82F6" stroke-width="1" />
+      <path d="M 0 70 L 20 60 L 40 80 L 60 50 L 80 75 L 100 40 L 120 70 L 140 30 L 160 80 L 180 50 L 200 65 L 220 40 L 240 75 L 260 45 L 280 65 L 300 40 L 320 80 L 340 50 L 350 65" fill="none" stroke="#A855F7" stroke-width="2" class="glow-purple pulse" opacity="0.8" />
+      <path d="M 0 70 L 20 60 L 40 80 L 60 50 L 80 75 L 100 40 L 120 70 L 140 30 L 160 80 L 180 50 L 200 65 L 220 40 L 240 75 L 260 45 L 280 65 L 300 40 L 320 80 L 340 50 L 350 65 L 350 90 L 0 90 Z" fill="rgba(168, 85, 247, 0.15)" stroke="none" />
+      <line x1="0" y1="90" x2="350" y2="90" stroke="#3B82F6" stroke-width="1" />
     </g>
     
     <!-- Deployment Block -->
     <g transform="translate(0, 400)">
-      <rect x="0" y="0" width="370" height="140" fill="rgba(13, 17, 23, 0.9)" stroke="#00E5FF" stroke-width="1" rx="8" />
+      <rect x="0" y="0" width="350" height="140" fill="rgba(13, 17, 23, 0.9)" stroke="#00E5FF" stroke-width="1" rx="8" />
       <text x="15" y="25" class="text-sub">GLOBAL DEPLOYMENT STATUS</text>
-      <line x1="15" y1="35" x2="355" y2="35" stroke="#00E5FF" stroke-width="1" opacity="0.5" />
+      <line x1="15" y1="35" x2="335" y2="35" stroke="#00E5FF" stroke-width="1" opacity="0.5" />
       
       <text x="15" y="65" class="text-data">SpendGuard AI</text>
-      <rect x="170" y="55" width="180" height="10" fill="#161B22" stroke="#3B82F6" />
-      <rect x="170" y="55" width="170" height="10" fill="#00E5FF" class="glow-cyan" />
+      <rect x="150" y="55" width="180" height="10" fill="#161B22" stroke="#3B82F6" />
+      <rect x="150" y="55" width="170" height="10" fill="#00E5FF" class="glow-cyan" />
       
       <text x="15" y="95" class="text-data">AI Hospital</text>
-      <rect x="170" y="85" width="180" height="10" fill="#161B22" stroke="#3B82F6" />
-      <rect x="170" y="85" width="144" height="10" fill="#8B5CF6" class="glow-purple" />
+      <rect x="150" y="85" width="180" height="10" fill="#161B22" stroke="#3B82F6" />
+      <rect x="150" y="85" width="144" height="10" fill="#8B5CF6" class="glow-purple" />
       
       <text x="15" y="125" class="text-data">GeoSecure AI</text>
-      <rect x="170" y="115" width="180" height="10" fill="#161B22" stroke="#3B82F6" />
-      <rect x="170" y="115" width="108" height="10" fill="#3B82F6" />
+      <rect x="150" y="115" width="180" height="10" fill="#161B22" stroke="#3B82F6" />
+      <rect x="150" y="115" width="108" height="10" fill="#3B82F6" />
     </g>
-
   </g>
 
 
@@ -267,7 +291,6 @@
   <!-- TECH STACK MODULES                         -->
   <!-- ========================================== -->
   
-  <!-- Glowing Divider Line -->
   <g transform="translate(0, 850)">
     <line x1="100" y1="0" x2="900" y2="0" stroke="#3B82F6" stroke-width="1" />
     <line x1="300" y1="0" x2="700" y2="0" stroke="#00E5FF" stroke-width="3" class="glow-cyan pulse" />
@@ -280,9 +303,9 @@
       <path d="M 0 10 L 10 0 L 250 0 L 260 10 L 260 110 L 250 120 L 10 120 L 0 110 Z" fill="rgba(13, 17, 23, 0.8)" stroke="#3B82F6" stroke-width="2" />
       <text x="20" y="30" class="text-title" font-size="16" fill="#3B82F6">FRONTEND</text>
       <line x1="20" y1="40" x2="240" y2="40" stroke="#3B82F6" stroke-width="1" opacity="0.3" />
-      <circle cx="30" cy="65" r="4" fill="#3B82F6" />
+      <circle cx="30" cy="65" r="4" fill="#3B82F6" class="pulse-fast glow-blue" />
       <text x="50" y="70" class="text-data">React &amp; React Native</text>
-      <circle cx="30" cy="95" r="4" fill="#3B82F6" />
+      <circle cx="30" cy="95" r="4" fill="#3B82F6" class="pulse-fast glow-blue" style="animation-delay: 0.2s" />
       <text x="50" y="100" class="text-data">Flutter &amp; Web</text>
     </g>
 
@@ -291,9 +314,9 @@
       <path d="M 0 10 L 10 0 L 250 0 L 260 10 L 260 110 L 250 120 L 10 120 L 0 110 Z" fill="rgba(13, 17, 23, 0.8)" stroke="#8B5CF6" stroke-width="2" class="glow-purple" />
       <text x="20" y="30" class="text-title" font-size="16" fill="#A855F7">BACKEND</text>
       <line x1="20" y1="40" x2="240" y2="40" stroke="#8B5CF6" stroke-width="1" opacity="0.3" />
-      <circle cx="30" cy="65" r="4" fill="#A855F7" />
+      <circle cx="30" cy="65" r="4" fill="#A855F7" class="pulse-fast glow-purple" />
       <text x="50" y="70" class="text-data">Python (FastAPI)</text>
-      <circle cx="30" cy="95" r="4" fill="#A855F7" />
+      <circle cx="30" cy="95" r="4" fill="#A855F7" class="pulse-fast glow-purple" style="animation-delay: 0.2s" />
       <text x="50" y="100" class="text-data">Node.js / Java</text>
     </g>
 
@@ -302,9 +325,9 @@
       <path d="M 0 10 L 10 0 L 250 0 L 260 10 L 260 110 L 250 120 L 10 120 L 0 110 Z" fill="rgba(13, 17, 23, 0.8)" stroke="#00E5FF" stroke-width="2" class="glow-cyan" />
       <text x="20" y="30" class="text-title" font-size="16" fill="#00E5FF">INFRASTRUCTURE</text>
       <line x1="20" y1="40" x2="240" y2="40" stroke="#00E5FF" stroke-width="1" opacity="0.3" />
-      <circle cx="30" cy="65" r="4" fill="#00E5FF" />
+      <circle cx="30" cy="65" r="4" fill="#00E5FF" class="pulse-fast glow-cyan" />
       <text x="50" y="70" class="text-data">AWS / Firebase / Docker</text>
-      <circle cx="30" cy="95" r="4" fill="#00E5FF" />
+      <circle cx="30" cy="95" r="4" fill="#00E5FF" class="pulse-fast glow-cyan" style="animation-delay: 0.2s" />
       <text x="50" y="100" class="text-data">MongoDB / SQLite</text>
     </g>
   </g>
@@ -322,26 +345,41 @@
 
   <!-- Project 1: SpendGuard AI -->
   <g transform="translate(50, 1220)" class="card-hover">
-    <!-- Holographic execution frame -->
+    <!-- Holographic execution frame with Inner Shadow / Glass -->
     <path d="M 10 0 L 430 0 L 440 10 L 440 240 L 430 250 L 10 250 L 0 240 L 0 10 Z" class="card" />
     <rect x="0" y="0" width="440" height="250" fill="rgba(0, 229, 255, 0.05)" class="hover-show" />
     <path d="M 0 10 L 10 0 L 430 0" fill="none" stroke="#00E5FF" stroke-width="3" class="hover-show glow-cyan pulse" />
     
-    <text x="30" y="45" font-family="'Orbitron', sans-serif" font-size="22" font-weight="900" fill="#FFFFFF">SpendGuard AI</text>
-    <rect x="360" y="25" width="50" height="25" rx="5" fill="#8B5CF6" class="glow-purple" />
-    <text x="385" y="42" class="text-data" font-size="12" text-anchor="middle" fill="#FFFFFF">EXE</text>
+    <!-- Status LED & PID -->
+    <circle cx="20" cy="25" r="4" fill="#00FF00" class="pulse-fast" filter="drop-shadow(0 0 4px #00FF00)" />
+    <text x="35" y="30" class="text-code">PID: 4092</text>
+    <text x="390" y="30" class="text-code" fill="#8B5CF6">v2.4.1</text>
     
-    <line x1="30" y1="65" x2="410" y2="65" stroke="#3B82F6" stroke-width="1" opacity="0.5" />
-    <text x="30" y="95" class="text-data" fill="#00E5FF">Offline-first AI personal finance</text>
+    <text x="20" y="60" font-family="'Orbitron', sans-serif" font-size="22" font-weight="900" fill="#FFFFFF">SpendGuard AI</text>
     
-    <!-- Code block / chips -->
-    <rect x="30" y="115" width="380" height="60" fill="#0D1117" stroke="#3B82F6" stroke-width="1" rx="5" />
-    <text x="45" y="140" font-family="'Share Tech Mono', monospace" font-size="12" fill="#3B82F6">> LOAD_MODULE: <tspan fill="#FFFFFF">React Native</tspan></text>
-    <text x="45" y="160" font-family="'Share Tech Mono', monospace" font-size="12" fill="#3B82F6">> LOAD_ENGINE: <tspan fill="#A855F7">TensorFlow Lite + SQLite</tspan></text>
+    <line x1="20" y1="75" x2="420" y2="75" stroke="#3B82F6" stroke-width="1" opacity="0.5" />
+    <text x="20" y="100" class="text-data" fill="#00E5FF">Offline-first AI personal finance</text>
     
-    <text x="30" y="215" class="text-sub">AI_LEVEL:</text>
-    <rect x="110" y="205" width="100" height="10" fill="#8B5CF6" class="glow-purple" />
-    <text x="220" y="215" class="text-data">FRAUD_DETECTION</text>
+    <!-- Scrolling Code block -->
+    <g transform="translate(20, 120)">
+      <rect x="0" y="0" width="400" height="60" fill="#0D1117" stroke="#3B82F6" stroke-width="1" rx="5" />
+      <!-- Clip Path for scroll -->
+      <clipPath id="clip1"><rect x="0" y="0" width="400" height="60" rx="5" /></clipPath>
+      <g clip-path="url(#clip1)">
+        <g class="scroll-up">
+          <text x="15" y="20" class="text-code">> INIT module react-native... [OK]</text>
+          <text x="15" y="40" class="text-code">> LOAD tflite_model_v4.bin... [OK]</text>
+          <text x="15" y="60" class="text-code">> SYNC sqlite_db_engine... [OK]</text>
+          <text x="15" y="80" class="text-code">> AI_PREDICT fraud_detection... 98.4%</text>
+        </g>
+      </g>
+    </g>
+    
+    <!-- Resource Usage -->
+    <text x="20" y="215" class="text-sub">AI_LEVEL:</text>
+    <rect x="100" y="205" width="100" height="10" fill="#8B5CF6" class="glow-purple" />
+    <text x="210" y="215" class="text-data">FRAUD_DETECTION</text>
+    <text x="380" y="215" class="text-code">RAM: 142MB</text>
   </g>
 
   <!-- Project 2: AI Hospital System -->
@@ -350,20 +388,35 @@
     <rect x="0" y="0" width="440" height="250" fill="rgba(168, 85, 247, 0.05)" class="hover-show" />
     <path d="M 0 10 L 10 0 L 430 0" fill="none" stroke="#A855F7" stroke-width="3" class="hover-show glow-purple pulse" />
     
-    <text x="30" y="45" font-family="'Orbitron', sans-serif" font-size="22" font-weight="900" fill="#FFFFFF">AI Hospital System</text>
-    <rect x="360" y="25" width="50" height="25" rx="5" fill="#00E5FF" class="glow-cyan" />
-    <text x="385" y="42" class="text-data" font-size="12" text-anchor="middle" fill="#161B22">EXE</text>
+    <!-- Status LED & PID -->
+    <circle cx="20" cy="25" r="4" fill="#00FF00" class="pulse-fast" filter="drop-shadow(0 0 4px #00FF00)" />
+    <text x="35" y="30" class="text-code">PID: 8112</text>
+    <text x="390" y="30" class="text-code" fill="#00E5FF">v1.2.0</text>
     
-    <line x1="30" y1="65" x2="410" y2="65" stroke="#3B82F6" stroke-width="1" opacity="0.5" />
-    <text x="30" y="95" class="text-data" fill="#A855F7">Smart scheduling &amp; medical management</text>
+    <text x="20" y="60" font-family="'Orbitron', sans-serif" font-size="22" font-weight="900" fill="#FFFFFF">AI Hospital System</text>
     
-    <rect x="30" y="115" width="380" height="60" fill="#0D1117" stroke="#3B82F6" stroke-width="1" rx="5" />
-    <text x="45" y="140" font-family="'Share Tech Mono', monospace" font-size="12" fill="#3B82F6">> LOAD_MODULE: <tspan fill="#FFFFFF">React + FastAPI</tspan></text>
-    <text x="45" y="160" font-family="'Share Tech Mono', monospace" font-size="12" fill="#3B82F6">> LOAD_ENGINE: <tspan fill="#00E5FF">Groq AI + MongoDB</tspan></text>
+    <line x1="20" y1="75" x2="420" y2="75" stroke="#3B82F6" stroke-width="1" opacity="0.5" />
+    <text x="20" y="100" class="text-data" fill="#A855F7">Smart scheduling &amp; medical management</text>
     
-    <text x="30" y="215" class="text-sub">AI_LEVEL:</text>
-    <rect x="110" y="205" width="100" height="10" fill="#00E5FF" class="glow-cyan" />
-    <text x="220" y="215" class="text-data">QUEUE_PREDICTION</text>
+    <!-- Scrolling Code block -->
+    <g transform="translate(20, 120)">
+      <rect x="0" y="0" width="400" height="60" fill="#0D1117" stroke="#3B82F6" stroke-width="1" rx="5" />
+      <clipPath id="clip2"><rect x="0" y="0" width="400" height="60" rx="5" /></clipPath>
+      <g clip-path="url(#clip2)">
+        <g class="scroll-up" style="animation-delay: -3s">
+          <text x="15" y="20" class="text-code">> BOOT fastapi_server... [OK]</text>
+          <text x="15" y="40" class="text-code">> CONNECT mongodb_cluster... [OK]</text>
+          <text x="15" y="60" class="text-code">> INIT groq_ai_models... [OK]</text>
+          <text x="15" y="80" class="text-code">> QUEUE_PREDICT running...</text>
+        </g>
+      </g>
+    </g>
+    
+    <!-- Resource Usage -->
+    <text x="20" y="215" class="text-sub">AI_LEVEL:</text>
+    <rect x="100" y="205" width="100" height="10" fill="#00E5FF" class="glow-cyan" />
+    <text x="210" y="215" class="text-data">QUEUE_PREDICTION</text>
+    <text x="380" y="215" class="text-code">RAM: 512MB</text>
   </g>
 
   <!-- Project 3: GeoSecure AI -->
@@ -372,20 +425,35 @@
     <rect x="0" y="0" width="440" height="250" fill="rgba(59, 130, 246, 0.05)" class="hover-show" />
     <path d="M 0 10 L 10 0 L 430 0" fill="none" stroke="#00E5FF" stroke-width="3" class="hover-show glow-cyan pulse" />
     
-    <text x="30" y="45" font-family="'Orbitron', sans-serif" font-size="22" font-weight="900" fill="#FFFFFF">GeoSecure AI</text>
-    <rect x="360" y="25" width="50" height="25" rx="5" fill="#3B82F6" class="glow-blue" />
-    <text x="385" y="42" class="text-data" font-size="12" text-anchor="middle" fill="#FFFFFF">EXE</text>
+    <!-- Status LED & PID -->
+    <circle cx="20" cy="25" r="4" fill="#00FF00" class="pulse-fast" filter="drop-shadow(0 0 4px #00FF00)" />
+    <text x="35" y="30" class="text-code">PID: 5041</text>
+    <text x="390" y="30" class="text-code" fill="#3B82F6">v3.0.5</text>
     
-    <line x1="30" y1="65" x2="410" y2="65" stroke="#3B82F6" stroke-width="1" opacity="0.5" />
-    <text x="30" y="95" class="text-data" fill="#3B82F6">Geo-tagged evidence &amp; security</text>
+    <text x="20" y="60" font-family="'Orbitron', sans-serif" font-size="22" font-weight="900" fill="#FFFFFF">GeoSecure AI</text>
     
-    <rect x="30" y="115" width="380" height="60" fill="#0D1117" stroke="#3B82F6" stroke-width="1" rx="5" />
-    <text x="45" y="140" font-family="'Share Tech Mono', monospace" font-size="12" fill="#3B82F6">> LOAD_MODULE: <tspan fill="#FFFFFF">AWS Cloud Architecture</tspan></text>
-    <text x="45" y="160" font-family="'Share Tech Mono', monospace" font-size="12" fill="#3B82F6">> LOAD_ENGINE: <tspan fill="#3B82F6">GPS Real-time Sync</tspan></text>
+    <line x1="20" y1="75" x2="420" y2="75" stroke="#3B82F6" stroke-width="1" opacity="0.5" />
+    <text x="20" y="100" class="text-data" fill="#3B82F6">Geo-tagged evidence &amp; security</text>
     
-    <text x="30" y="215" class="text-sub">AI_LEVEL:</text>
-    <rect x="110" y="205" width="100" height="10" fill="#3B82F6" class="glow-blue" />
-    <text x="220" y="215" class="text-data">SECURE_VAULT</text>
+    <!-- Scrolling Code block -->
+    <g transform="translate(20, 120)">
+      <rect x="0" y="0" width="400" height="60" fill="#0D1117" stroke="#3B82F6" stroke-width="1" rx="5" />
+      <clipPath id="clip3"><rect x="0" y="0" width="400" height="60" rx="5" /></clipPath>
+      <g clip-path="url(#clip3)">
+        <g class="scroll-up" style="animation-delay: -6s">
+          <text x="15" y="20" class="text-code">> SYNC aws_s3_bucket... [OK]</text>
+          <text x="15" y="40" class="text-code">> GPS real_time_tracking... [OK]</text>
+          <text x="15" y="60" class="text-code">> ENCRYPT data_stream... [AES-256]</text>
+          <text x="15" y="80" class="text-code">> UPLOAD complete.</text>
+        </g>
+      </g>
+    </g>
+    
+    <!-- Resource Usage -->
+    <text x="20" y="215" class="text-sub">AI_LEVEL:</text>
+    <rect x="100" y="205" width="100" height="10" fill="#3B82F6" class="glow-blue" />
+    <text x="210" y="215" class="text-data">SECURE_VAULT</text>
+    <text x="380" y="215" class="text-code">RAM: 256MB</text>
   </g>
 
   <!-- Project 4: VibeSync -->
@@ -394,20 +462,35 @@
     <rect x="0" y="0" width="440" height="250" fill="rgba(0, 229, 255, 0.05)" class="hover-show" />
     <path d="M 0 10 L 10 0 L 430 0" fill="none" stroke="#00E5FF" stroke-width="3" class="hover-show glow-cyan pulse" />
     
-    <text x="30" y="45" font-family="'Orbitron', sans-serif" font-size="22" font-weight="900" fill="#FFFFFF">VibeSync</text>
-    <rect x="360" y="25" width="50" height="25" rx="5" fill="#8B5CF6" class="glow-purple" />
-    <text x="385" y="42" class="text-data" font-size="12" text-anchor="middle" fill="#FFFFFF">EXE</text>
+    <!-- Status LED & PID -->
+    <circle cx="20" cy="25" r="4" fill="#00FF00" class="pulse-fast" filter="drop-shadow(0 0 4px #00FF00)" />
+    <text x="35" y="30" class="text-code">PID: 9022</text>
+    <text x="390" y="30" class="text-code" fill="#8B5CF6">v1.8.0</text>
     
-    <line x1="30" y1="65" x2="410" y2="65" stroke="#3B82F6" stroke-width="1" opacity="0.5" />
-    <text x="30" y="95" class="text-data" fill="#8B5CF6">Realtime media synchronization platform</text>
+    <text x="20" y="60" font-family="'Orbitron', sans-serif" font-size="22" font-weight="900" fill="#FFFFFF">VibeSync</text>
     
-    <rect x="30" y="115" width="380" height="60" fill="#0D1117" stroke="#3B82F6" stroke-width="1" rx="5" />
-    <text x="45" y="140" font-family="'Share Tech Mono', monospace" font-size="12" fill="#3B82F6">> LOAD_MODULE: <tspan fill="#FFFFFF">Flutter + Firebase</tspan></text>
-    <text x="45" y="160" font-family="'Share Tech Mono', monospace" font-size="12" fill="#3B82F6">> LOAD_ENGINE: <tspan fill="#A855F7">Watch Together API</tspan></text>
+    <line x1="20" y1="75" x2="420" y2="75" stroke="#3B82F6" stroke-width="1" opacity="0.5" />
+    <text x="20" y="100" class="text-data" fill="#8B5CF6">Realtime media synchronization platform</text>
     
-    <text x="30" y="215" class="text-sub">AI_LEVEL:</text>
-    <rect x="110" y="205" width="100" height="10" fill="#8B5CF6" class="glow-purple" />
-    <text x="220" y="215" class="text-data">ZERO_LATENCY_SYNC</text>
+    <!-- Scrolling Code block -->
+    <g transform="translate(20, 120)">
+      <rect x="0" y="0" width="400" height="60" fill="#0D1117" stroke="#3B82F6" stroke-width="1" rx="5" />
+      <clipPath id="clip4"><rect x="0" y="0" width="400" height="60" rx="5" /></clipPath>
+      <g clip-path="url(#clip4)">
+        <g class="scroll-up" style="animation-delay: -8s">
+          <text x="15" y="20" class="text-code">> LOAD flutter_engine... [OK]</text>
+          <text x="15" y="40" class="text-code">> CONNECT firebase_rt_db... [OK]</text>
+          <text x="15" y="60" class="text-code">> SYNC watch_together_api... [LATENCY: 12ms]</text>
+          <text x="15" y="80" class="text-code">> BROADCAST started.</text>
+        </g>
+      </g>
+    </g>
+    
+    <!-- Resource Usage -->
+    <text x="20" y="215" class="text-sub">AI_LEVEL:</text>
+    <rect x="100" y="205" width="100" height="10" fill="#8B5CF6" class="glow-purple" />
+    <text x="210" y="215" class="text-data">ZERO_LATENCY_SYNC</text>
+    <text x="380" y="215" class="text-code">RAM: 180MB</text>
   </g>
 
 
@@ -421,12 +504,68 @@
     <path d="M 500 0 L 500 550" stroke="#00E5FF" stroke-width="2" class="glow-cyan data-stream" />
     <path d="M 800 0 L 800 550" stroke="#8B5CF6" stroke-width="2" class="data-stream" />
     
+    <!-- Data packets entering Stats layer -->
+    <path d="M 200 0 L 200 550" fill="none" stroke="#00E5FF" class="data-packet" />
+    <path d="M 500 0 L 500 550" fill="none" stroke="#A855F7" class="data-packet" style="animation-delay: -1.5s;" />
+    
     <!-- Header for Stats -->
     <line x1="100" y1="100" x2="900" y2="100" stroke="#3B82F6" stroke-width="1" />
     <line x1="300" y1="100" x2="700" y2="100" stroke="#A855F7" stroke-width="3" class="glow-purple pulse" />
     <text x="500" y="90" font-family="'Orbitron', sans-serif" font-size="20" fill="#FFFFFF" text-anchor="middle" letter-spacing="4px">TELEMETRY_DASHBOARD</text>
     
     <rect x="490" y="110" width="20" height="440" fill="url(#fog)" />
+  </g>
+
+  <!-- ========================================== -->
+  <!-- LIVE AI ASSISTANT PANEL                    -->
+  <!-- ========================================== -->
+  
+  <g transform="translate(700, 2000)">
+    <rect x="0" y="0" width="280" height="150" class="card" rx="10" />
+    <path d="M 0 30 L 280 30" stroke="#00E5FF" stroke-width="1" opacity="0.5" />
+    
+    <text x="15" y="20" class="text-title glow-cyan text-cyan" font-size="14">AI_ASSISTANT</text>
+    <circle cx="260" cy="15" r="4" fill="#00FF00" class="pulse-fast glow-cyan" />
+    
+    <text x="15" y="55" class="text-sub">CURRENT TASK:</text>
+    <text x="130" y="55" class="text-data">Building SpendGuard</text>
+    
+    <text x="15" y="85" class="text-sub">NEXT OBJECTIVE:</text>
+    <text x="130" y="85" class="text-data">Hospital AI</text>
+    
+    <text x="15" y="115" class="text-sub">LEARNING:</text>
+    <text x="130" y="115" class="text-data text-purple glow-purple">Flutter, FastAPI, AWS</text>
+    
+    <text x="15" y="140" class="text-sub">LAST COMMIT:</text>
+    <text x="130" y="140" class="text-data text-cyan glow-cyan">2 minutes ago</text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- FULL SCREEN BOOT SEQUENCE OVERLAY          -->
+  <!-- ========================================== -->
+  
+  <g class="boot-overlay">
+    <!-- Solid Background to hide the rest -->
+    <rect x="0" y="0" width="1000" height="2400" fill="#0D1117" />
+    <rect x="0" y="0" width="1000" height="2400" fill="url(#noise)" style="mix-blend-mode: overlay;" />
+    
+    <!-- Scanline during boot -->
+    <rect x="0" y="0" width="1000" height="10" fill="#00E5FF" class="scanline glow-cyan" />
+    
+    <g transform="translate(300, 800)">
+      <text x="0" y="0" class="text-code boot-text-1">BOOTING AI COMMAND CENTER...</text>
+      <rect x="0" y="15" height="10" fill="#00E5FF" class="boot-bar glow-cyan" />
+      
+      <text x="0" y="60" class="text-code boot-text-2">Loading AI Core &amp; Neural Network...</text>
+      <rect x="0" y="75" height="10" fill="#8B5CF6" class="boot-bar-2 glow-purple" />
+      
+      <text x="0" y="120" class="text-code boot-text-3">Authenticating User Identity...</text>
+      <rect x="0" y="135" height="10" fill="#00E5FF" class="boot-bar-3 glow-cyan" />
+      
+      <text x="0" y="200" class="text-title glow-cyan text-cyan boot-text-4" font-size="32">IDENTITY VERIFIED.</text>
+      <text x="0" y="240" class="text-data boot-text-4" font-size="24">Welcome, S.G. Rathenesh.</text>
+      <text x="0" y="280" class="text-code boot-text-4 blink" font-size="18">Launching Interface_</text>
+    </g>
   </g>
 
 </svg>
