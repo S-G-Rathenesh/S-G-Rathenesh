@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 250" width="100%" height="250">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;display=swap');
+      
+      .bg { fill: #0D1117; }
+      .line { stroke: #3B82F6; stroke-width: 4; }
+      .line-glow { stroke: #8B5CF6; stroke-width: 8; opacity: 0.5; filter: url(#glow); }
+      
+      .point { fill: #8B5CF6; stroke: #0D1117; stroke-width: 3; }
+      .point-inner { fill: #FFFFFF; }
+      
+      .text-year { font-family: 'Share Tech Mono', monospace; font-size: 16px; fill: #A855F7; font-weight: bold; }
+      .text-desc { font-family: 'Share Tech Mono', monospace; font-size: 12px; fill: #FFFFFF; }
+      
+      .anim-dash {
+        stroke-dasharray: 10;
+        animation: dashMove 20s linear infinite;
+      }
+      
+      @keyframes dashMove {
+        to { stroke-dashoffset: -1000; }
+      }
+    </style>
+    
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="250" class="bg" />
+
+  <g transform="translate(50, 125)">
+    <!-- Base Timeline Line -->
+    <line x1="0" y1="0" x2="700" y2="0" class="line" />
+    <line x1="0" y1="0" x2="700" y2="0" class="line-glow" />
+    <line x1="0" y1="0" x2="700" y2="0" stroke="#FFFFFF" stroke-width="1" class="anim-dash" />
+    
+    <!-- Milestones -->
+    
+    <!-- Milestone 1 -->
+    <g transform="translate(100, 0)">
+      <circle cx="0" cy="0" r="10" class="point" />
+      <circle cx="0" cy="0" r="4" class="point-inner" />
+      <line x1="0" y1="-10" x2="0" y2="-30" stroke="#3B82F6" stroke-width="2" />
+      <text x="0" y="-40" text-anchor="middle" class="text-year">INIT</text>
+      <text x="0" y="30" text-anchor="middle" class="text-desc">Computer Science</text>
+      <text x="0" y="45" text-anchor="middle" class="text-desc" fill="#3B82F6">Engineering Start</text>
+    </g>
+
+    <!-- Milestone 2 -->
+    <g transform="translate(250, 0)">
+      <circle cx="0" cy="0" r="10" class="point" />
+      <circle cx="0" cy="0" r="4" class="point-inner" />
+      <line x1="0" y1="10" x2="0" y2="30" stroke="#3B82F6" stroke-width="2" />
+      <text x="0" y="50" text-anchor="middle" class="text-year">DEV</text>
+      <text x="0" y="-35" text-anchor="middle" class="text-desc">Full Stack Mastery</text>
+      <text x="0" y="-20" text-anchor="middle" class="text-desc" fill="#3B82F6">React &amp; NodeJS</text>
+    </g>
+
+    <!-- Milestone 3 -->
+    <g transform="translate(425, 0)">
+      <circle cx="0" cy="0" r="12" class="point" fill="#A855F7" />
+      <circle cx="0" cy="0" r="5" class="point-inner" />
+      <line x1="0" y1="-12" x2="0" y2="-40" stroke="#A855F7" stroke-width="2" />
+      <text x="0" y="-50" text-anchor="middle" class="text-year" fill="#8B5CF6">AI_CORE</text>
+      <text x="0" y="30" text-anchor="middle" class="text-desc">Machine Learning</text>
+      <text x="0" y="45" text-anchor="middle" class="text-desc" fill="#3B82F6">TensorFlow &amp; AI Apps</text>
+    </g>
+
+    <!-- Milestone 4 -->
+    <g transform="translate(600, 0)">
+      <circle cx="0" cy="0" r="10" class="point" />
+      <circle cx="0" cy="0" r="4" class="point-inner" />
+      <line x1="0" y1="10" x2="0" y2="30" stroke="#3B82F6" stroke-width="2" />
+      <text x="0" y="50" text-anchor="middle" class="text-year">FUTURE</text>
+      <text x="0" y="-35" text-anchor="middle" class="text-desc">Real-world AI</text>
+      <text x="0" y="-20" text-anchor="middle" class="text-desc" fill="#3B82F6">Scale &amp; Impact</text>
+    </g>
+    
+  </g>
+</svg>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="100%" height="200">
+  <defs>
+    <style>
+      .particle {
+        fill: #8B5CF6;
+        opacity: 0.6;
+        animation: float linear infinite;
+      }
+      .p-blue { fill: #3B82F6; }
+      .p-purple { fill: #A855F7; }
+      
+      .f1 { animation-duration: 15s; }
+      .f2 { animation-duration: 20s; }
+      .f3 { animation-duration: 25s; }
+      
+      @keyframes float {
+        0% { transform: translateY(220px) translateX(0px); opacity: 0; }
+        10% { opacity: 0.6; }
+        90% { opacity: 0.6; }
+        100% { transform: translateY(-20px) translateX(50px); opacity: 0; }
+      }
+    </style>
+  </defs>
+  
+  <rect width="100%" height="200" fill="#0D1117" />
+  
+  <g>
+    <!-- Particles starting from different X positions and with different animation speeds -->
+    <circle cx="10%" cy="0" r="2" class="particle f1" />
+    <circle cx="20%" cy="0" r="3" class="particle p-blue f2" style="animation-delay: -5s;" />
+    <circle cx="30%" cy="0" r="1.5" class="particle p-purple f3" style="animation-delay: -10s;" />
+    <circle cx="40%" cy="0" r="2.5" class="particle f1" style="animation-delay: -2s;" />
+    <circle cx="50%" cy="0" r="2" class="particle p-blue f2" style="animation-delay: -15s;" />
+    <circle cx="60%" cy="0" r="1" class="particle p-purple f3" style="animation-delay: -7s;" />
+    <circle cx="70%" cy="0" r="3" class="particle f1" style="animation-delay: -12s;" />
+    <circle cx="80%" cy="0" r="2" class="particle p-blue f2" style="animation-delay: -4s;" />
+    <circle cx="90%" cy="0" r="1.5" class="particle p-purple f3" style="animation-delay: -18s;" />
+  </g>
+</svg>

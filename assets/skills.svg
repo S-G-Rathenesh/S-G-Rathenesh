@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 250" width="100%" height="250">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;display=swap');
+      
+      .bg { fill: #0D1117; }
+      .text-skill { font-family: 'Share Tech Mono', monospace; font-size: 14px; fill: #FFFFFF; font-weight: bold; }
+      
+      .node { fill: #161B22; stroke: #3B82F6; stroke-width: 2; }
+      .node-core { fill: #8B5CF6; stroke: #A855F7; }
+      
+      .link { stroke: #3B82F6; stroke-width: 1; opacity: 0.5; }
+      .link-active { stroke: #A855F7; stroke-width: 2; opacity: 0.8; stroke-dasharray: 5; animation: dash 5s linear infinite; }
+      
+      @keyframes dash {
+        to { stroke-dashoffset: -100; }
+      }
+
+      .float { animation: floating 3s ease-in-out infinite alternate; }
+      .float-d1 { animation-delay: -1s; }
+      .float-d2 { animation-delay: -2s; }
+      
+      @keyframes floating {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-10px); }
+      }
+      
+      .pulse-ring {
+        fill: none;
+        stroke: #8B5CF6;
+        stroke-width: 2;
+        animation: ringPulse 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+      }
+      
+      @keyframes ringPulse {
+        0% { r: 30; opacity: 1; }
+        100% { r: 50; opacity: 0; }
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="250" class="bg" />
+
+  <!-- Background Grid -->
+  <path d="M 0 50 L 800 50 M 0 100 L 800 100 M 0 150 L 800 150 M 0 200 L 800 200" stroke="#3B82F6" stroke-width="0.2" opacity="0.2" />
+  
+  <g transform="translate(400, 125)">
+    <!-- Links -->
+    <line x1="0" y1="0" x2="-150" y2="-70" class="link-active" />
+    <line x1="0" y1="0" x2="150" y2="-70" class="link-active" />
+    <line x1="0" y1="0" x2="-200" y2="40" class="link-active" />
+    <line x1="0" y1="0" x2="200" y2="40" class="link-active" />
+    <line x1="0" y1="0" x2="0" y2="80" class="link-active" />
+    
+    <!-- Secondary links -->
+    <line x1="-150" y1="-70" x2="-250" y2="-40" class="link" />
+    <line x1="150" y1="-70" x2="250" y2="-40" class="link" />
+    <line x1="-200" y1="40" x2="-250" y2="80" class="link" />
+    <line x1="200" y1="40" x2="250" y2="80" class="link" />
+
+    <!-- Nodes -->
+    
+    <!-- AI Core -->
+    <g class="float">
+      <circle cx="0" cy="0" r="30" class="pulse-ring" />
+      <circle cx="0" cy="0" r="35" class="node node-core" />
+      <text x="0" y="5" text-anchor="middle" class="text-skill">AI</text>
+    </g>
+
+    <!-- Python / ML -->
+    <g transform="translate(-150, -70)" class="float float-d1">
+      <circle cx="0" cy="0" r="25" class="node" />
+      <text x="0" y="5" text-anchor="middle" class="text-skill">Python</text>
+    </g>
+    <g transform="translate(-250, -40)">
+      <circle cx="0" cy="0" r="15" class="node" />
+      <text x="0" y="5" text-anchor="middle" font-size="10" fill="#3B82F6">FastAPI</text>
+    </g>
+
+    <!-- React / Frontend -->
+    <g transform="translate(150, -70)" class="float float-d2">
+      <circle cx="0" cy="0" r="25" class="node" />
+      <text x="0" y="5" text-anchor="middle" class="text-skill">React</text>
+    </g>
+    <g transform="translate(250, -40)">
+      <circle cx="0" cy="0" r="15" class="node" />
+      <text x="0" y="5" text-anchor="middle" font-size="10" fill="#3B82F6">Native</text>
+    </g>
+
+    <!-- App Dev -->
+    <g transform="translate(-200, 40)" class="float float-d2">
+      <circle cx="0" cy="0" r="25" class="node" />
+      <text x="0" y="5" text-anchor="middle" class="text-skill">Flutter</text>
+    </g>
+    <g transform="translate(-250, 80)">
+      <circle cx="0" cy="0" r="15" class="node" />
+      <text x="0" y="5" text-anchor="middle" font-size="10" fill="#3B82F6">Firebase</text>
+    </g>
+
+    <!-- Databases -->
+    <g transform="translate(200, 40)" class="float float-d1">
+      <circle cx="0" cy="0" r="25" class="node" />
+      <text x="0" y="5" text-anchor="middle" class="text-skill">NoSQL</text>
+    </g>
+    <g transform="translate(250, 80)">
+      <circle cx="0" cy="0" r="15" class="node" />
+      <text x="0" y="5" text-anchor="middle" font-size="10" fill="#3B82F6">MongoDB</text>
+    </g>
+
+    <!-- Cloud / AWS -->
+    <g transform="translate(0, 80)" class="float">
+      <circle cx="0" cy="0" r="25" class="node" />
+      <text x="0" y="5" text-anchor="middle" class="text-skill">AWS</text>
+    </g>
+  </g>
+</svg>

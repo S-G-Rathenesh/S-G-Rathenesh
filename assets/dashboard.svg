@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="100%" height="300">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&amp;family=Share+Tech+Mono&amp;display=swap');
+      
+      .bg { fill: #0D1117; }
+      .panel { fill: #161B22; stroke: #3B82F6; stroke-width: 1; }
+      .panel-purple { stroke: #8B5CF6; }
+      
+      .text-title { font-family: 'Orbitron', sans-serif; font-size: 16px; font-weight: 700; fill: #FFFFFF; }
+      .text-data { font-family: 'Share Tech Mono', monospace; font-size: 14px; fill: #A855F7; }
+      .text-label { font-family: 'Share Tech Mono', monospace; font-size: 12px; fill: #3B82F6; }
+      
+      .scanline {
+        fill: rgba(139, 92, 246, 0.2);
+        animation: scan 4s linear infinite;
+      }
+      
+      @keyframes scan {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(300px); }
+      }
+
+      .pulse-dot {
+        fill: #8B5CF6;
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes pulse {
+        0% { transform: scale(0.95); opacity: 0.5; }
+        50% { transform: scale(1.2); opacity: 1; }
+        100% { transform: scale(0.95); opacity: 0.5; }
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="300" class="bg" />
+  
+  <!-- Grid -->
+  <path d="M 0 50 L 800 50 M 0 100 L 800 100 M 0 150 L 800 150 M 0 200 L 800 200 M 0 250 L 800 250" stroke="#3B82F6" stroke-width="0.2" opacity="0.5" />
+  <path d="M 100 0 L 100 300 M 200 0 L 200 300 M 300 0 L 300 300 M 400 0 L 400 300 M 500 0 L 500 300 M 600 0 L 600 300 M 700 0 L 700 300" stroke="#3B82F6" stroke-width="0.2" opacity="0.5" />
+
+  <!-- Scanline effect -->
+  <rect width="800" height="20" class="scanline" />
+
+  <!-- Top Right decorative -->
+  <g transform="translate(650, 20)">
+    <rect x="0" y="0" width="10" height="10" fill="#3B82F6" opacity="0.8"/>
+    <rect x="15" y="0" width="10" height="10" fill="#8B5CF6" opacity="0.8"/>
+    <rect x="30" y="0" width="10" height="10" fill="#A855F7" opacity="0.8"/>
+    <text x="50" y="10" class="text-label" fill="#FFFFFF">SYS.V1</text>
+  </g>
+
+  <!-- Dashboard Panels -->
+  
+  <!-- Current Mission Panel -->
+  <g transform="translate(40, 40)">
+    <rect x="0" y="0" width="340" height="100" class="panel panel-purple" rx="5" />
+    <path d="M 0 25 L 340 25" stroke="#8B5CF6" stroke-width="1" />
+    <text x="15" y="18" class="text-title">CURRENT MISSION</text>
+    <circle cx="320" cy="12" r="4" class="pulse-dot" />
+    
+    <text x="15" y="50" class="text-label">OBJECTIVE:</text>
+    <text x="15" y="70" class="text-data" fill="#FFFFFF">Building AI that solves real-world problems.</text>
+    <text x="15" y="90" class="text-label">LOCATION: <tspan fill="#A855F7">INDIA [GEO_LOCK_ACQUIRED]</tspan></text>
+  </g>
+
+  <!-- Identity Panel -->
+  <g transform="translate(420, 40)">
+    <rect x="0" y="0" width="340" height="100" class="panel" rx="5" />
+    <path d="M 0 25 L 340 25" stroke="#3B82F6" stroke-width="1" />
+    <text x="15" y="18" class="text-title">IDENTITY RECORD</text>
+    
+    <text x="15" y="45" class="text-label">NAME: <tspan fill="#FFFFFF">S.G. RATHENESH</tspan></text>
+    <text x="15" y="65" class="text-label">ROLES:</text>
+    <text x="65" y="65" class="text-data">> AI Developer</text>
+    <text x="65" y="85" class="text-data">> Full Stack Developer</text>
+    <text x="15" y="105" class="text-data">> CS Engineering Student</text>
+  </g>
+
+  <!-- Active Projects Panel -->
+  <g transform="translate(40, 160)">
+    <rect x="0" y="0" width="720" height="110" class="panel panel-purple" rx="5" />
+    <path d="M 0 25 L 720 25" stroke="#8B5CF6" stroke-width="1" />
+    <text x="15" y="18" class="text-title">SYSTEM PROCESSES (PROJECTS)</text>
+    
+    <!-- Process Bars -->
+    <g transform="translate(15, 40)">
+      <text x="0" y="10" class="text-label">SpendGuard AI</text>
+      <rect x="150" y="2" width="200" height="8" fill="#161B22" stroke="#3B82F6" />
+      <rect x="150" y="2" width="180" height="8" fill="#8B5CF6" />
+      <text x="360" y="10" class="text-data">90% [OPTIMIZING]</text>
+      
+      <text x="0" y="35" class="text-label">AI Hospital System</text>
+      <rect x="150" y="27" width="200" height="8" fill="#161B22" stroke="#3B82F6" />
+      <rect x="150" y="27" width="150" height="8" fill="#3B82F6" />
+      <text x="360" y="35" class="text-data">75% [DEPLOYING]</text>
+      
+      <text x="0" y="60" class="text-label">GeoSecure AI</text>
+      <rect x="150" y="52" width="200" height="8" fill="#161B22" stroke="#3B82F6" />
+      <rect x="150" y="52" width="100" height="8" fill="#A855F7" />
+      <text x="360" y="60" class="text-data">50% [TRAINING]</text>
+    </g>
+
+    <!-- Neural Network Graphic inside panel -->
+    <g transform="translate(600, 50)">
+      <circle cx="10" cy="10" r="3" fill="#8B5CF6" />
+      <circle cx="10" cy="40" r="3" fill="#8B5CF6" />
+      <circle cx="50" cy="25" r="3" fill="#3B82F6" />
+      <circle cx="90" cy="10" r="3" fill="#A855F7" />
+      <circle cx="90" cy="40" r="3" fill="#A855F7" />
+      
+      <path d="M 10 10 L 50 25 M 10 40 L 50 25 M 50 25 L 90 10 M 50 25 L 90 40" stroke="#3B82F6" stroke-width="1" opacity="0.5" />
+    </g>
+  </g>
+
+</svg>
