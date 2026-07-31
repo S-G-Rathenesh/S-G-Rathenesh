@@ -11,10 +11,10 @@
 <table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#0D1117">
   <tr>
     <td width="50%" align="center">
-      <img src="https://github-readme-stats.vercel.app/api?username=S-G-Rathenesh&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&title_color=00E5FF&icon_color=3B82F6&text_color=FFFFFF&bg_color=0D1117" width="100%" alt="GitHub Stats" />
+      <img src="https://github-readme-stats-eight-theta.vercel.app/api?username=S-G-Rathenesh&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&title_color=00E5FF&icon_color=3B82F6&text_color=FFFFFF&bg_color=0D1117" width="100%" alt="GitHub Stats" />
     </td>
     <td width="50%" align="center">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=S-G-Rathenesh&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&layout=compact&title_color=8B5CF6&text_color=FFFFFF&bg_color=0D1117" width="100%" alt="Top Languages" />
+      <img src="https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=S-G-Rathenesh&theme=tokyonight&hide_border=true&include_all_commits=true&count_private=true&layout=compact&title_color=8B5CF6&text_color=FFFFFF&bg_color=0D1117" width="100%" alt="Top Languages" />
     </td>
   </tr>
 </table>
